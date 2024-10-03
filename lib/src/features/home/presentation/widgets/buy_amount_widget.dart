@@ -15,7 +15,7 @@ class BuyAmountWidget extends StatefulWidget {
 
 class _BuyAmountWidgetState extends State<BuyAmountWidget>
     with SingleTickerProviderStateMixin {
-  late AnimationController controller;
+  late AnimationController? controller;
   late Animation scaleAnimation;
   late Animation numberAnimation;
 
@@ -30,16 +30,18 @@ class _BuyAmountWidgetState extends State<BuyAmountWidget>
     scaleAnimation = TweenSequence([
       TweenSequenceItem(tween: Tween(begin: 0.0, end: 1.0), weight: 0.5),
       TweenSequenceItem(tween: Tween(begin: 1.0, end: 1.0), weight: 0.5),
-    ]).animate(controller);
+    ]).animate(controller!);
     numberAnimation =
-        IntTween(begin: 0, end: widget.amount).animate(controller);
+        IntTween(begin: 0, end: widget.amount).animate(controller!);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Future.delayed(
         const Duration(milliseconds: 800),
       ).then(
         (_) {
-          controller.forward();
+          if (controller != null) {
+            controller?.forward();
+          }
         },
       );
     });
@@ -47,7 +49,8 @@ class _BuyAmountWidgetState extends State<BuyAmountWidget>
 
   @override
   void dispose() {
-    controller.dispose();
+    controller?.dispose();
+    controller = null;
     super.dispose();
   }
 

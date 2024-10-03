@@ -12,7 +12,7 @@ class UserProfileWidget extends StatefulWidget {
 
 class _UserProfileWidgetState extends State<UserProfileWidget>
     with SingleTickerProviderStateMixin {
-  late AnimationController controller;
+  late AnimationController? controller;
   late Animation scaleAnimation;
 
   @override
@@ -23,14 +23,16 @@ class _UserProfileWidgetState extends State<UserProfileWidget>
       duration: const Duration(milliseconds: 800),
     );
 
-    scaleAnimation = Tween(begin: 0.0, end: 1.0).animate(controller);
+    scaleAnimation = Tween(begin: 0.0, end: 1.0).animate(controller!);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Future.delayed(
         const Duration(milliseconds: 800),
       ).then(
         (_) {
-          controller.forward();
+          if (controller != null) {
+            controller?.forward();
+          }
         },
       );
     });
@@ -38,7 +40,8 @@ class _UserProfileWidgetState extends State<UserProfileWidget>
 
   @override
   void dispose() {
-    controller.dispose();
+    controller?.dispose();
+    controller = null;
     super.dispose();
   }
 

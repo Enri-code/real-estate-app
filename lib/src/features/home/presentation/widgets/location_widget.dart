@@ -12,7 +12,7 @@ class LocationWidget extends StatefulWidget {
 
 class _LocationWidgetState extends State<LocationWidget>
     with SingleTickerProviderStateMixin {
-  late AnimationController controller;
+  late AnimationController? controller;
   late Animation fadeAnimation;
 
   @override
@@ -23,14 +23,16 @@ class _LocationWidgetState extends State<LocationWidget>
       duration: const Duration(milliseconds: 800),
     );
 
-    fadeAnimation = Tween(begin: 0.0, end: 1.0).animate(controller);
+    fadeAnimation = Tween(begin: 0.0, end: 1.0).animate(controller!);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Future.delayed(
         const Duration(milliseconds: 800),
       ).then(
         (_) {
-          controller.forward();
+          if (controller != null) {
+            controller?.forward();
+          }
         },
       );
     });
@@ -38,7 +40,8 @@ class _LocationWidgetState extends State<LocationWidget>
 
   @override
   void dispose() {
-    controller.dispose();
+    controller?.dispose();
+    controller = null;
     super.dispose();
   }
 
