@@ -4,6 +4,7 @@ import 'package:real_estate_app/src/features/dashboard/presentation/widgets/navi
 import 'package:real_estate_app/src/features/home/presentation/pages/home_page.dart';
 import 'package:real_estate_app/src/features/map/presentation/pages/map_page.dart';
 import 'package:real_estate_app/src/styles/app_color.dart';
+import 'package:real_estate_app/src/utils/constants.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -15,11 +16,10 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage>
     with SingleTickerProviderStateMixin {
   // animation controller for navigation tab
-  late AnimationController controller;
+  late AnimationController? dashboardAnimController;
   late Animation animation;
 
   final Duration pageFadeDuration = const Duration(milliseconds: 1000);
-  final Duration navbarDuration = const Duration(milliseconds: 300);
   final Duration navbarDelay = const Duration(seconds: 3);
 
   int tabIndex = 2;
@@ -27,13 +27,11 @@ class _DashboardPageState extends State<DashboardPage>
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(
-      duration: navbarDuration,
-      vsync: this,
-    );
+    dashboardAnimController =
+        AnimationController(duration: kDuration300Mil, vsync: this);
     animation = Tween<double>(begin: -100.0, end: 20.0).animate(
       CurvedAnimation(
-        parent: controller,
+        parent: dashboardAnimController!,
         curve: Curves.easeInCubic,
       ),
     );
@@ -45,13 +43,13 @@ class _DashboardPageState extends State<DashboardPage>
   @override
   void dispose() {
     // dispose animation controller
-    controller.dispose();
+    dashboardAnimController?.dispose();
+    dashboardAnimController = null;
     super.dispose();
   }
 
-  Future<void> showNavbar() async {
-    await Future.delayed(navbarDelay);
-    controller.forward();
+  void showNavbar() {
+    Future.delayed(navbarDelay, () => dashboardAnimController?.forward());
   }
 
   Widget currentPage() {
@@ -99,36 +97,8 @@ class _DashboardPageState extends State<DashboardPage>
                       color: AppColor.black,
                       borderRadius: BorderRadius.circular(30.h),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        NavigationTabIcon(
-                          icon: Icons.maps_ugc,
-                          selected: 0 == tabIndex,
-                          onTap: () => changeTab(0),
-                        ),
-                        NavigationTabIcon(
-                          icon: Icons.message_rounded,
-                          selected: 1 == tabIndex,
-                          onTap: () => changeTab(1),
-                        ),
-                        NavigationTabIcon(
-                          icon: Icons.home,
-                          selected: 2 == tabIndex,
-                          onTap: () => changeTab(2),
-                        ),
-                        NavigationTabIcon(
-                          icon: Icons.favorite,
-                          selected: 3 == tabIndex,
-                          onTap: () => changeTab(3),
-                        ),
-                        NavigationTabIcon(
-                          icon: Icons.person,
-                          selected: 4 == tabIndex,
-                          onTap: () => changeTab(4),
-                        ),
-                      ],
-                    ),
+                    child:
+                        CustomNavBar(tabIndex: tabIndex, changeTab: changeTab),
                   ),
                 ),
               );
