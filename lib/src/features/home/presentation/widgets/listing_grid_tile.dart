@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:real_estate_app/src/styles/app_color.dart';
+import 'package:real_estate_app/src/utils/constants.dart';
 
 class ListingGridTile extends StatefulWidget {
   const ListingGridTile({
@@ -31,10 +32,7 @@ class _ListingGridTileState extends State<ListingGridTile>
     maxSlideWidth = 345.w * (widget.widthRatio / 4);
     circleWidth = 50.r;
 
-    controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 800),
-    );
+    controller = AnimationController(vsync: this, duration: kDuration800Mil);
 
     expandWidthAnimation =
         Tween(begin: circleWidth, end: maxSlideWidth).animate(

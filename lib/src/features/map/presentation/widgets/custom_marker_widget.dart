@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:real_estate_app/src/styles/app_color.dart';
+import 'package:real_estate_app/src/utils/constants.dart';
 
 class CustomMarkerWidget extends StatelessWidget {
   const CustomMarkerWidget({
@@ -12,7 +13,7 @@ class CustomMarkerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 800),
+      duration: kDuration800Mil,
       height: 40.h,
       padding: EdgeInsets.symmetric(horizontal: 5.r),
       alignment: Alignment.center,
