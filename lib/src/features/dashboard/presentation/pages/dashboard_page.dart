@@ -19,7 +19,7 @@ class _DashboardPageState extends State<DashboardPage>
   late Animation animation;
 
   final Duration pageFadeDuration = const Duration(milliseconds: 1000);
-  final Duration navbarDuration = const Duration(milliseconds: 1000);
+  final Duration navbarDuration = const Duration(milliseconds: 300);
   final Duration navbarDelay = const Duration(seconds: 3);
 
   int tabIndex = 2;
@@ -31,7 +31,12 @@ class _DashboardPageState extends State<DashboardPage>
       duration: navbarDuration,
       vsync: this,
     );
-    animation = Tween<double>(begin: -10.0, end: 20.0).animate(controller);
+    animation = Tween<double>(begin: -100.0, end: 20.0).animate(
+      CurvedAnimation(
+        parent: controller,
+        curve: Curves.easeInCubic,
+      ),
+    );
     WidgetsBinding.instance.addPostFrameCallback((_) {
       showNavbar();
     });

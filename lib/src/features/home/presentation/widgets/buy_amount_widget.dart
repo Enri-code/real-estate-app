@@ -36,7 +36,7 @@ class _BuyAmountWidgetState extends State<BuyAmountWidget>
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Future.delayed(
-        const Duration(seconds: 2),
+        const Duration(milliseconds: 800),
       ).then(
         (_) {
           controller.forward();

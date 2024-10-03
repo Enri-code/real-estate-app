@@ -5,7 +5,6 @@ import 'package:real_estate_app/src/features/home/presentation/widgets/home_list
 import 'package:real_estate_app/src/features/home/presentation/widgets/location_widget.dart';
 import 'package:real_estate_app/src/features/home/presentation/widgets/rent_amount_widget.dart';
 import 'package:real_estate_app/src/features/home/presentation/widgets/user_profile_widget.dart';
-import 'package:real_estate_app/src/styles/app_color.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -53,13 +52,14 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            // height: 0.7.sh,
-            child: HomeListingWidget(),
-          ),
+          HomeListingWidget(),
+          // Positioned(
+          //   bottom: 0,
+          //   left: 0,
+          //   right: 0,
+          //   // height: 0.7.sh,
+          //   child: HomeListingWidget(),
+          // ),
         ],
       ),
     );
