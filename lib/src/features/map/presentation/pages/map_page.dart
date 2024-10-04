@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:real_estate_app/src/features/map/data/models/custom_marker.dart';
 import 'package:real_estate_app/src/features/map/presentation/widgets/custom_marker_widget.dart';
@@ -43,10 +44,10 @@ class _MapPageState extends State<MapPage> {
       position: const LatLng(6.538937012067466, 3.373223618378729),
       name: 'Yaba2 College',
     ),
-    CustomMarker(
-      position: const LatLng(6.508937012067466, 3.383223618378729),
-      name: 'Yaba2 College',
-    ),
+    // CustomMarker(
+    //   position: const LatLng(6.508937012067466, 3.383223618378729),
+    //   name: 'Yaba2 College',
+    // ),
     CustomMarker(
       position: const LatLng(6.518937012067466, 3.373223618378729),
       name: 'Yaba College',
@@ -94,6 +95,94 @@ class _MapPageState extends State<MapPage> {
               ),
             );
           }),
+          Positioned(
+            left: 20.w,
+            right: 20.w,
+            top: 50.h,
+            child: SizedBox(
+              height: 45.h,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30.r),
+                        color: Colors.white,
+                      ),
+                      alignment: Alignment.center,
+                      child: Row(
+                        children: [
+                          Container(
+                            height: 45.h,
+                            width: 45.h,
+                            alignment: Alignment.center,
+                            child: const Icon(Icons.search),
+                          ),
+                          const Expanded(
+                            child: TextField(
+                              decoration: InputDecoration(
+                                contentPadding: EdgeInsets.zero,
+                                border: InputBorder.none,
+                                isDense: false,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  10.horizontalSpace,
+                  AspectRatio(
+                    aspectRatio: 1,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+            left: 20.w,
+            bottom: 100.h,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  height: 50.r,
+                  width: 50.r,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.white.withOpacity(0.3),
+                  ),
+                ),
+                5.verticalSpace,
+                Container(
+                  height: 50.r,
+                  width: 50.r,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.white.withOpacity(0.3),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            right: 20.w,
+            bottom: 100.h,
+            child: Container(
+              height: 50.r,
+              width: 150.r,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30.r),
+                color: Colors.white.withOpacity(0.3),
+              ),
+            ),
+          )
         ],
       ),
     );
