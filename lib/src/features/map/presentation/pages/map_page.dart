@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:real_estate_app/src/enums/map_information.dart';
+import 'package:real_estate_app/src/utils/enums/map_information.dart';
 import 'package:real_estate_app/src/features/map/data/models/custom_marker.dart';
 import 'package:real_estate_app/src/features/map/presentation/bloc/map_bloc.dart';
 import 'package:real_estate_app/src/features/map/presentation/widgets/circle_icon_widget.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:real_estate_app/src/enums/map_information.dart';
+import 'package:real_estate_app/src/utils/enums/map_information.dart';
 import 'package:real_estate_app/src/features/map/presentation/bloc/map_bloc.dart';
 import 'package:real_estate_app/src/styles/app_color.dart';
 import 'package:real_estate_app/src/ui/scale_animation_widget.dart';
