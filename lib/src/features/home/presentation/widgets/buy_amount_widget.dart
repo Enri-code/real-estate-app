@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:real_estate_app/src/styles/app_color.dart';
+import 'package:real_estate_app/src/utils/constants.dart';
 
 class BuyAmountWidget extends StatefulWidget {
   final int amount;
@@ -22,10 +23,7 @@ class _BuyAmountWidgetState extends State<BuyAmountWidget>
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 800),
-    );
+    controller = AnimationController(vsync: this, duration: kDuration800Mil);
 
     scaleAnimation = TweenSequence([
       TweenSequenceItem(tween: Tween(begin: 0.0, end: 1.0), weight: 0.5),
@@ -35,9 +33,7 @@ class _BuyAmountWidgetState extends State<BuyAmountWidget>
         IntTween(begin: 0, end: widget.amount).animate(controller!);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.delayed(
-        const Duration(milliseconds: 800),
-      ).then(
+      Future.delayed(kDuration800Mil).then(
         (_) {
           if (controller != null) {
             controller?.forward();

@@ -27,15 +27,12 @@ class _MapPageState extends State<MapPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      DefaultAssetBundle.of(context)
-          .loadString('assets/json/google_map_theme.json')
-          .then((theme) {
-        setState(() {
-          mapTheme = theme;
-        });
-        updateAllMarkers();
-      });
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final theme = await DefaultAssetBundle.of(context)
+          .loadString('assets/json/google_map_theme.json');
+
+      if (mounted) setState(() => mapTheme = theme);
+      updateAllMarkers();
     });
   }
 

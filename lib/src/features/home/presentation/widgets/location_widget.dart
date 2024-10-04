@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:real_estate_app/src/utils/constants.dart';
 
 class LocationWidget extends StatefulWidget {
   const LocationWidget({
@@ -20,15 +21,13 @@ class _LocationWidgetState extends State<LocationWidget>
     super.initState();
     controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 800),
+      duration: kDuration800Mil,
     );
 
     fadeAnimation = Tween(begin: 0.0, end: 1.0).animate(controller!);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.delayed(
-        const Duration(milliseconds: 800),
-      ).then(
+      Future.delayed(kDuration800Mil).then(
         (_) {
           if (controller != null) {
             controller?.forward();
