@@ -1,10 +1,18 @@
 import 'dart:async';
 
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:real_estate_app/src/enums/map_information.dart';
 import 'package:real_estate_app/src/features/map/data/models/custom_marker.dart';
+import 'package:real_estate_app/src/features/map/presentation/bloc/map_bloc.dart';
+import 'package:real_estate_app/src/features/map/presentation/widgets/circle_icon_widget.dart';
 import 'package:real_estate_app/src/features/map/presentation/widgets/custom_marker_widget.dart';
+import 'package:real_estate_app/src/features/map/presentation/widgets/map_filter_widget.dart';
+import 'package:real_estate_app/src/features/map/presentation/widgets/map_search_widget.dart';
+import 'package:real_estate_app/src/styles/app_color.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
@@ -100,43 +108,13 @@ class _MapPageState extends State<MapPage> {
               height: 45.h,
               child: Row(
                 children: [
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30.r),
-                        color: Colors.white,
-                      ),
-                      alignment: Alignment.center,
-                      child: Row(
-                        children: [
-                          Container(
-                            height: 45.h,
-                            width: 45.h,
-                            alignment: Alignment.center,
-                            child: const Icon(Icons.search),
-                          ),
-                          const Expanded(
-                            child: TextField(
-                              decoration: InputDecoration(
-                                contentPadding: EdgeInsets.zero,
-                                border: InputBorder.none,
-                                isDense: false,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                  const Expanded(
+                    child: MapSearchWidget(),
                   ),
                   10.horizontalSpace,
-                  AspectRatio(
+                  const AspectRatio(
                     aspectRatio: 1,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.white,
-                      ),
-                    ),
+                    child: MapFilterWidget(),
                   ),
                 ],
               ),
@@ -148,23 +126,9 @@ class _MapPageState extends State<MapPage> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Container(
-                  height: 50.r,
-                  width: 50.r,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.white.withOpacity(0.3),
-                  ),
-                ),
+                dropUpWidget(),
                 5.verticalSpace,
-                Container(
-                  height: 50.r,
-                  width: 50.r,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.white.withOpacity(0.3),
-                  ),
-                ),
+                const CircleIconWidget(icon: Icons.send),
               ],
             ),
           ),
@@ -185,17 +149,6 @@ class _MapPageState extends State<MapPage> {
     );
   }
 
-  Future<void> updateAllMarkers() async {
-    final futures = markers.map((marker) async {
-      return await updateMarkerCoordinates(marker);
-    }).toList();
-
-    final allMarkers = await Future.wait(futures);
-    markers = allMarkers;
-    // update marker positions
-    setState(() {});
-  }
-
   Future<CustomMarker> updateMarkerCoordinates(CustomMarker marker) async {
     final GoogleMapController controller = await _controller.future;
     final coordinate = await controller.getScreenCoordinate(
@@ -207,5 +160,74 @@ class _MapPageState extends State<MapPage> {
     double xAxis = coordinate.x.toDouble() / ratio;
     double yAxis = coordinate.y.toDouble() / ratio;
     return marker.copy(xAxis: xAxis, yAxis: yAxis);
+  }
+
+  Widget dropUpWidget() {
+    return BlocBuilder<MapBloc, MapState>(
+      builder: (context, state) {
+        return DropdownButtonHideUnderline(
+          child: DropdownButton2(
+            customButton: const CircleIconWidget(icon: Icons.wallet_outlined),
+            onChanged: (info) {
+              if (info != null) {
+                context.read<MapBloc>().add(ChangeMarkerInfo(info));
+              }
+            },
+            items: MapInformation.values.map((menu) {
+              bool selected = state.mapInfo == menu;
+
+              return DropdownMenuItem<MapInformation>(
+                value: menu,
+                child: Row(
+                  children: [
+                    Icon(
+                      menu.icon,
+                      size: 15,
+                      color: selected ? AppColor.primary : AppColor.grey,
+                    ),
+                    5.horizontalSpace,
+                    Text(
+                      menu.displayName,
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        color: selected ? AppColor.primary : AppColor.grey,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }).toList(),
+            dropdownStyleData: DropdownStyleData(
+              width: 180.w,
+              isOverButton: true,
+              offset: const Offset(0, 150),
+              padding: EdgeInsets.zero,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.r),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.05),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> updateAllMarkers() async {
+    final futures = markers.map((marker) async {
+      return await updateMarkerCoordinates(marker);
+    }).toList();
+
+    final allMarkers = await Future.wait(futures);
+    markers = allMarkers;
+    // update marker positions
+    setState(() {});
   }
 }
