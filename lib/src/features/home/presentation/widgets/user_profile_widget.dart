@@ -21,17 +21,15 @@ class _UserProfileWidgetState extends State<UserProfileWidget>
     super.initState();
     controller = AnimationController(
       vsync: this,
-      duration: kDuration800Mil,
+      duration: kDuration1Sec,
     );
 
     scaleAnimation = Tween(begin: 0.0, end: 1.0).animate(controller!);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.delayed(kDuration800Mil).then(
+      Future.delayed(kDuration500Mil).then(
         (_) {
-          if (controller != null) {
-            controller?.forward();
-          }
+          if (controller != null) controller?.forward();
         },
       );
     });

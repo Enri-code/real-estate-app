@@ -64,7 +64,7 @@ class _ListingGridTileState extends State<ListingGridTile>
     ]).animate(controller!);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.delayed(const Duration(seconds: 2)).then((_) {
+      Future.delayed(kDuration2Sec).then((_) {
         if (controller != null) {
           controller!.forward();
         }
