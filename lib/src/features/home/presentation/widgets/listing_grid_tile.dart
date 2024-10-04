@@ -5,10 +5,7 @@ import 'package:real_estate_app/src/features/home/data/models/home_listing.dart'
 import 'package:real_estate_app/src/styles/app_color.dart';
 
 class ListingGridTile extends StatefulWidget {
-  const ListingGridTile({
-    super.key,
-    required this.listing,
-  });
+  const ListingGridTile({super.key, required this.listing});
 
   final HomeListing listing;
 

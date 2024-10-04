@@ -6,9 +6,7 @@ import 'package:real_estate_app/src/features/home/presentation/bloc/home_bloc.da
 import 'package:real_estate_app/src/features/home/presentation/widgets/listing_grid_tile.dart';
 
 class HomeListingWidget extends StatelessWidget {
-  const HomeListingWidget({
-    super.key,
-  });
+  const HomeListingWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -4,9 +4,7 @@ import 'package:real_estate_app/src/data/app_images.dart';
 import 'package:real_estate_app/src/ui/scale_animation_widget.dart';
 
 class MapFilterWidget extends StatelessWidget {
-  const MapFilterWidget({
-    super.key,
-  });
+  const MapFilterWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

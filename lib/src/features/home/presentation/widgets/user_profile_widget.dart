@@ -16,9 +16,7 @@ class UserProfileWidget extends StatelessWidget {
         width: 50.r,
         decoration: const BoxDecoration(
           color: Colors.white,
-          image: DecorationImage(
-            image: AssetImage(AppImages.profile),
-          ),
+          image: DecorationImage(image: AssetImage(AppImages.profile)),
           shape: BoxShape.circle,
         ),
       ),

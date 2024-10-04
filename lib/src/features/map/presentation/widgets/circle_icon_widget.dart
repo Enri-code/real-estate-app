@@ -3,11 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:real_estate_app/src/ui/scale_animation_widget.dart';
 
 class CircleIconWidget extends StatelessWidget {
-  const CircleIconWidget({
-    super.key,
-    required this.icon,
-    this.onTap,
-  });
+  const CircleIconWidget({super.key, required this.icon, this.onTap});
 
   final String icon;
   final void Function()? onTap;
