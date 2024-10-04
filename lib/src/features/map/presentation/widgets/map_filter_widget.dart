@@ -9,7 +9,7 @@ class MapFilterWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScaleAnimationWidget(
-      delay: 1800,
+      delay: 100,
       duration: 500,
       child: Container(
         alignment: Alignment.center,
@@ -17,10 +17,7 @@ class MapFilterWidget extends StatelessWidget {
           shape: BoxShape.circle,
           color: Colors.white,
         ),
-        child: const Icon(
-          Icons.tune,
-          size: 15,
-        ),
+        child: const Icon(Icons.tune, size: 15),
       ),
     );
   }

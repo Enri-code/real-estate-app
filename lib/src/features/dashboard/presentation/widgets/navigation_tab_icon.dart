@@ -6,11 +6,11 @@ import 'package:real_estate_app/src/utils/constants.dart';
 class CustomNavBar extends StatefulWidget {
   const CustomNavBar({
     super.key,
-    required this.tabIndex,
+    required this.currentIndex,
     required this.changeTab,
   });
 
-  final int tabIndex;
+  final int currentIndex;
   final void Function(int) changeTab;
 
   @override
@@ -20,29 +20,32 @@ class CustomNavBar extends StatefulWidget {
 class _CustomNavBarState extends State<CustomNavBar>
     with SingleTickerProviderStateMixin {
   AnimationController? controller;
+  late Animation selectAnim, deselectAnim;
   int? lastIndex;
-
-  final colorAnim = TweenSequence([
-    TweenSequenceItem(
-      tween: ColorTween(begin: AppColor.primary, end: AppColor.brown),
-      weight: 1,
-    ),
-    TweenSequenceItem(
-      tween: ColorTween(begin: AppColor.brown, end: Colors.black),
-      weight: 1,
-    ),
-  ]);
 
   @override
   void initState() {
     controller = AnimationController(vsync: this, duration: kDuration300Mil)
       ..forward();
+    final colorAnim = TweenSequence([
+      TweenSequenceItem(
+        tween: ColorTween(begin: AppColor.primary, end: AppColor.brown),
+        weight: 1,
+      ),
+      TweenSequenceItem(
+        tween: ColorTween(begin: AppColor.brown, end: AppColor.black),
+        weight: 1,
+      ),
+    ]);
+
+    deselectAnim = colorAnim.animate(controller!);
+    selectAnim = colorAnim.animate(ReverseAnimation(controller!));
     super.initState();
   }
 
   @override
   void didUpdateWidget(covariant CustomNavBar oldWidget) {
-    lastIndex = oldWidget.tabIndex;
+    lastIndex = oldWidget.currentIndex;
     super.didUpdateWidget(oldWidget);
   }
 
@@ -52,52 +55,36 @@ class _CustomNavBarState extends State<CustomNavBar>
       animation: controller!,
       builder: (context, _) {
         return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             NavigationTabIcon(
               icon: Icons.maps_ugc,
-              selected: isSelected(0),
-              onTap: () {
-                widget.changeTab(0);
-                controller?.forward(from: 0);
-              },
+              selected: 0 == widget.currentIndex,
+              onTap: () => _onSelectTab(0),
               color: getColor(0),
             ),
             NavigationTabIcon(
               icon: Icons.message_rounded,
-              selected: isSelected(1),
-              onTap: () {
-                widget.changeTab(1);
-                controller?.forward(from: 0);
-              },
+              selected: 1 == widget.currentIndex,
+              onTap: () => _onSelectTab(1),
               color: getColor(1),
             ),
             NavigationTabIcon(
               icon: Icons.home,
-              selected: isSelected(2),
+              selected: 2 == widget.currentIndex,
               size: 28,
-              onTap: () {
-                widget.changeTab(2);
-                controller?.forward(from: 0);
-              },
+              onTap: () => _onSelectTab(2),
               color: getColor(2),
             ),
             NavigationTabIcon(
               icon: Icons.favorite,
-              selected: isSelected(3),
-              onTap: () {
-                widget.changeTab(3);
-                controller?.forward(from: 0);
-              },
+              selected: 3 == widget.currentIndex,
+              onTap: () => _onSelectTab(3),
               color: getColor(3),
             ),
             NavigationTabIcon(
               icon: Icons.person,
-              selected: isSelected(4),
-              onTap: () {
-                widget.changeTab(4);
-                controller?.forward(from: 0);
-              },
+              selected: 4 == widget.currentIndex,
+              onTap: () => _onSelectTab(4),
               color: getColor(4),
             ),
           ],
@@ -106,15 +93,19 @@ class _CustomNavBarState extends State<CustomNavBar>
     );
   }
 
-  bool isSelected(int index) => index == widget.tabIndex;
+  void _onSelectTab(int index) {
+    widget.changeTab(index);
+    controller?.forward(from: 0);
+  }
+
   Color getColor(int index) {
-    if (widget.tabIndex == index) {
-      return colorAnim.transform(1 - controller!.value)!;
+    if (widget.currentIndex == index) {
+      return selectAnim.value;
     }
-    if (widget.tabIndex == lastIndex) {
-      return colorAnim.transform(controller!.value)!;
+    if (index == lastIndex) {
+      return deselectAnim.value;
     }
-    return colorAnim.transform(1)!;
+    return AppColor.black;
   }
 }
 
@@ -139,16 +130,18 @@ class NavigationTabIcon extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: SizedBox(
-        height: 50.r,
-        width: 50.r,
+        width: 56.r,
+        height: 56.r,
         child: Stack(
           alignment: Alignment.center,
           children: [
-            AnimatedContainer(
-              duration: kDuration300Mil,
-              height: selected ? 50.r : 40.r,
-              width: selected ? 50.r : 40.r,
+            DecoratedBox(
               decoration: BoxDecoration(shape: BoxShape.circle, color: color),
+              child: AnimatedSize(
+                duration: kDuration500Mil,
+                clipBehavior: Clip.none,
+                child: SizedBox.square(dimension: selected ? 56.r : 44.r),
+              ),
             ),
             Icon(icon, color: Colors.white, size: size),
           ],
@@ -157,173 +150,3 @@ class NavigationTabIcon extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-// class NavigationTabIcon extends StatefulWidget {
-//   const NavigationTabIcon({
-//     super.key,
-//     required this.icon,
-//     required this.selected,
-//     required this.onTap,
-//   });
-
-//   final IconData icon;
-//   final bool selected;
-//   final void Function() onTap;
-
-//   @override
-//   State<NavigationTabIcon> createState() => _NavigationTabIconState();
-// }
-
-// class _NavigationTabIconState extends State<NavigationTabIcon>
-//     with SingleTickerProviderStateMixin {
-//   late AnimationController controller;
-//   final Duration duration = const Duration(milliseconds: 1200);
-
-//   /// animation variables
-//   ///
-//   late bool selected;
-
-//   //// animation values
-//   late Animation<double> colorAnimaton;
-//   late Animation<double> colorSizeAnimation;
-//   late Animation<double> borderSplashAnimation;
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     controller = AnimationController(
-//       vsync: this,
-//       duration: duration,
-//     );
-//     selected = widget.selected;
-
-//     initializeAnimation();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return InkWell(
-//       borderRadius: BorderRadius.circular(25.r),
-//       splashColor: Colors.transparent,
-//       onTap: () {
-//         controller.reset();
-//         controller.forward();
-//         widget.onTap();
-//       },
-//       child: SizedBox(
-//         height: 50.r,
-//         width: 50.r,
-//         child: Stack(
-//           children: [
-//             // black background
-//             Container(
-//               height: 50.r,
-//               width: 50.r,
-//               decoration: const BoxDecoration(
-//                 shape: BoxShape.circle,
-//                 color: Colors.black,
-//               ),
-//             ),
-//             // white splash  and color
-//             AnimatedBuilder(
-//               animation: controller,
-//               builder: (context, child) {
-//                 return Align(
-//                   alignment: Alignment.center,
-//                   child: Container(
-//                     height: 50.r * colorSizeAnimation.value,
-//                     width: 50.r * colorSizeAnimation.value,
-//                     decoration: BoxDecoration(
-//                       shape: BoxShape.circle,
-//                       border: Border.all(
-//                         width: borderSplashAnimation.value,
-//                         color: Colors.white,
-//                       ),
-//                       color: AppColor.primary.withOpacity(
-//                         colorAnimaton.value,
-//                       ),
-//                     ),
-//                   ),
-//                 );
-//               },
-//             ),
-//             Align(
-//               alignment: Alignment.center,
-//               child: Icon(
-//                 widget.icon,
-//                 color: Colors.white,
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-
-//   void initializeAnimation() {
-//     if (widget.selected) {
-//       /// setup for color animation
-//       colorAnimaton = TweenSequence(
-//         [
-//           TweenSequenceItem(
-//             tween: Tween(
-//               begin: 0.0,
-//               end: 0.0,
-//             ),
-//             weight: 50,
-//           ),
-//           TweenSequenceItem(
-//             tween: Tween(
-//               begin: 0.0,
-//               end: 1.0,
-//             ),
-//             weight: 50,
-//           ),
-//         ],
-//       ).animate(controller);
-
-//       /// setup for color size animation
-//       colorSizeAnimation = TweenSequence(
-//         [
-//           TweenSequenceItem(
-//             tween: Tween(
-//               begin: 1.0,
-//               end: 0.4,
-//             ),
-//             weight: 50,
-//           ),
-//           TweenSequenceItem(
-//             tween: Tween(
-//               begin: 0.4,
-//               end: 1.0,
-//             ),
-//             weight: 50,
-//           ),
-//         ],
-//       ).animate(controller);
-
-//       borderSplashAnimation = TweenSequence(
-//         [
-//           TweenSequenceItem(
-//             tween: Tween(
-//               begin: 1.0,
-//               end: 2.0,
-//             ),
-//             weight: 50,
-//           ),
-//           TweenSequenceItem(
-//             tween: Tween(
-//               begin: 2.0,
-//               end: 0.0,
-//             ),
-//             weight: 50,
-//           ),
-//         ],
-//       ).animate(controller);
-//     }
-//   }
-// }

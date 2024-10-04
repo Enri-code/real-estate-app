@@ -5,7 +5,7 @@ import 'package:real_estate_app/src/features/home/presentation/widgets/home_list
 import 'package:real_estate_app/src/features/home/presentation/widgets/location_widget.dart';
 import 'package:real_estate_app/src/features/home/presentation/widgets/user_profile_widget.dart';
 import 'package:real_estate_app/src/styles/app_color.dart';
-import 'package:real_estate_app/src/ui/translate_animation_widget.dart';
+import 'package:real_estate_app/src/utils/constants.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,43 +16,71 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-  GlobalKey<ScaffoldState>? key = GlobalKey();
-  PersistentBottomSheetController? controller;
+  final key = GlobalKey<ScaffoldState>();
+  AnimationController? titleAnimationController;
+  late Animation<Offset> textSlideAnimation;
 
   @override
   void initState() {
     super.initState();
+    titleAnimationController = AnimationController(
+      vsync: this,
+      duration: kDuration800Mil,
+    );
+
+    textSlideAnimation = TweenSequence<Offset>([
+      TweenSequenceItem(
+        tween: Tween<Offset>(
+          begin: const Offset(0, 1),
+          end: const Offset(0, 1),
+        ),
+        weight: 0.3,
+      ),
+      TweenSequenceItem(
+        tween: Tween<Offset>(begin: const Offset(0, 1), end: Offset.zero),
+        weight: 0.8,
+      ),
+    ]).animate(CurvedAnimation(
+      parent: titleAnimationController!,
+      curve: Curves.easeOut,
+    ));
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.delayed(const Duration(milliseconds: 1800)).then((_) async {
-        if (key != null) {
-          controller = key!.currentState!.showBottomSheet(
-            shape: RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.vertical(top: Radius.circular(20.r))),
-            (context) {
-              return DraggableScrollableSheet(
-                  expand: false,
-                  initialChildSize: 0.7,
-                  maxChildSize: 0.7,
-                  minChildSize: 0.4,
-                  shouldCloseOnMinExtent: false,
-                  snap: true,
-                  builder: (context, scrollController) {
-                    return SingleChildScrollView(
-                      controller: scrollController,
-                      child: const HomeListingWidget(),
-                    );
-                  });
-            },
-          );
-        }
+      Future.delayed(kDuration1_8Sec).then((_) {
+        return titleAnimationController?.forward();
+      });
+      Future.delayed(const Duration(milliseconds: 4000)).then((_) {
+        key.currentState?.showBottomSheet(
+          backgroundColor: Colors.transparent,
+          sheetAnimationStyle: AnimationStyle(
+            duration: kDuration800Mil,
+            curve: Curves.easeOut,
+          ),
+          (context) {
+            return DraggableScrollableSheet(
+              snap: true,
+              expand: false,
+              shouldCloseOnMinExtent: false,
+              maxChildSize: 0.68,
+              minChildSize: 0.4,
+              initialChildSize: 0.68,
+              builder: (context, scrollController) {
+                return SingleChildScrollView(
+                  controller: scrollController,
+                  child: const HomeListingWidget(),
+                );
+              },
+            );
+          },
+        );
       });
     });
   }
 
   @override
   void dispose() {
-    key = null;
+    titleAnimationController?.dispose();
+    titleAnimationController = null;
     super.dispose();
   }
 
@@ -66,7 +94,7 @@ class _HomePageState extends State<HomePage>
           Container(
             decoration: const BoxDecoration(
               gradient: RadialGradient(
-                colors: [Color(0xfffed9b1), Color(0xfff9f7f5)],
+                colors: [Color(0xfffed9b1), AppColor.lightGrey],
                 focal: Alignment(1, 0.3),
                 center: Alignment(0.7, 0.4),
                 radius: 0.9,
@@ -74,88 +102,87 @@ class _HomePageState extends State<HomePage>
             ),
           ),
           SafeArea(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                10.verticalSpace,
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.w),
-                  child: const Row(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  10.verticalSpace,
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      LocationWidget(),
-                      UserProfileWidget(),
-                    ],
+                    children: [LocationWidget(), UserProfileWidget()],
                   ),
-                ),
-                32.verticalSpace,
-                Container(
-                  height: 30.h,
-                  padding: EdgeInsets.symmetric(horizontal: 20.w),
-                  child: ClipRRect(
-                    child: TranslateAnimationWidget(
-                      delay: 1000,
-                      duration: 800,
-                      offset: Offset(0, 30.h),
-                      child: Text(
-                        'Hi, Marina',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.w500,
-                          color: AppColor.grey,
-                        ),
+                  32.verticalSpace,
+                  FadeTransition(
+                    opacity: titleAnimationController!,
+                    child: Text(
+                      'Hi, Marina',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 24.sp,
+                        // fontWeight: FontWeight.w500,
+                        color: AppColor.grey,
+                        height: 1.15,
                       ),
                     ),
                   ),
-                ),
-                10.verticalSpace,
-                Container(
-                  height: 120.h,
-                  padding: EdgeInsets.symmetric(horizontal: 20.w),
-                  child: ClipRRect(
-                    child: TranslateAnimationWidget(
-                      delay: 1000,
-                      duration: 800,
-                      offset: Offset(0, 120.h),
+                  8.verticalSpace,
+                  ClipRect(
+                    child: SlideTransition(
+                      position: textSlideAnimation,
                       child: Text(
-                        'let\'s select your perfect place',
+                        'let\'s select your',
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontSize: 40.sp,
-                          fontWeight: FontWeight.w400,
-                          color: AppColor.black,
+                          // fontWeight: FontWeight.w500,
+                          height: 1.15,
                         ),
                       ),
                     ),
                   ),
-                ),
-                32.verticalSpace,
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.w),
-                  child: Row(
+                  ClipRect(
+                    child: SlideTransition(
+                      position: textSlideAnimation,
+                      child: Text(
+                        'perfect place',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          fontSize: 40.sp,
+                          // fontWeight: FontWeight.w500,
+                          height: 1.15,
+                        ),
+                      ),
+                    ),
+                  ),
+                  32.verticalSpace,
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      HomeCountdownWidget(
-                        countDown: 982,
-                        title: 'Buy',
-                        subtitle: 'offers',
-                        backgroundColor: AppColor.primary,
+                      const HomeCountdownWidget(
+                        countDown: 1034,
+                        title: 'BUY',
                         textColor: Colors.white,
-                        borderRadius: 100.r,
+                        decoration: BoxDecoration(
+                          color: AppColor.primary,
+                          shape: BoxShape.circle,
+                        ),
                       ),
                       HomeCountdownWidget(
-                        countDown: 1200,
-                        title: 'Rent',
-                        subtitle: 'offers',
-                        backgroundColor: Colors.white,
+                        countDown: 2212,
+                        title: 'RENT',
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            colors: [Colors.white38, Colors.white],
+                          ),
+                          borderRadius: BorderRadius.circular(20.r),
+                        ),
                         textColor: const Color(0xFFa6957e),
-                        borderRadius: 20.r,
                       ),
                     ],
                   ),
-                )
-              ],
+                ],
+              ),
             ),
           ),
         ],

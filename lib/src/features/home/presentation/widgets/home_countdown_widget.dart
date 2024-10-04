@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:real_estate_app/src/ui/scale_animation_widget.dart';
 import 'package:real_estate_app/src/utils/constants.dart';
 
 class HomeCountdownWidget extends StatefulWidget {
@@ -7,18 +8,14 @@ class HomeCountdownWidget extends StatefulWidget {
     super.key,
     required this.countDown,
     required this.title,
-    required this.subtitle,
-    required this.backgroundColor,
     required this.textColor,
-    required this.borderRadius,
+    required this.decoration,
   });
 
   final int countDown;
   final String title;
-  final String subtitle;
-  final Color backgroundColor;
   final Color textColor;
-  final double borderRadius;
+  final BoxDecoration decoration;
 
   @override
   State<HomeCountdownWidget> createState() => _HomeCountdownWidgetState();
@@ -27,27 +24,22 @@ class HomeCountdownWidget extends StatefulWidget {
 class _HomeCountdownWidgetState extends State<HomeCountdownWidget>
     with SingleTickerProviderStateMixin {
   late AnimationController? controller;
-  late Animation scaleAnimation;
   late Animation numberAnimation;
 
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(vsync: this, duration: kDuration800Mil);
+    controller = AnimationController(vsync: this, duration: kDuration2Sec);
 
-    scaleAnimation = TweenSequence([
-      TweenSequenceItem(tween: Tween(begin: 0.0, end: 1.0), weight: 0.5),
-      TweenSequenceItem(tween: Tween(begin: 1.0, end: 1.0), weight: 0.5),
-    ]).animate(controller!);
-    numberAnimation =
-        IntTween(begin: 0, end: widget.countDown).animate(controller!);
+    numberAnimation = IntTween(
+      begin: 0,
+      end: widget.countDown,
+    ).animate(CurvedAnimation(parent: controller!, curve: Curves.easeOut));
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.delayed(kDuration800Mil).then(
+      Future.delayed(kDuration2Sec).then(
         (_) {
-          if (controller != null) {
-            controller?.forward();
-          }
+          if (controller != null) controller?.forward();
         },
       );
     });
@@ -62,60 +54,50 @@ class _HomeCountdownWidgetState extends State<HomeCountdownWidget>
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-        animation: scaleAnimation,
-        builder: (context, child) {
-          return Transform.scale(
-            scale: scaleAnimation.value,
-            alignment: Alignment.center,
-            child: Container(
-              height: 170.r,
-              width: 170.r,
-              decoration: BoxDecoration(
-                color: widget.backgroundColor,
-                borderRadius: BorderRadius.circular(widget.borderRadius),
-                // boxShadow: [
-                //   BoxShadow(
-                //     color: AppColor.primary.withOpacity(0.2),
-                //     blurRadius: 50,
-                //   )
-                // ],
+    return ScaleAnimationWidget(
+      delay: 2300,
+      duration: 1200,
+      child: Container(
+        width: 170.r,
+        height: 170.r,
+        decoration: widget.decoration,
+        child: Column(
+          children: [
+            16.verticalSpace,
+            Text(
+              widget.title,
+              style: TextStyle(
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w400,
+                color: widget.textColor,
               ),
-              child: Column(
-                children: [
-                  10.verticalSpace,
-                  Text(
-                    widget.title,
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w400,
-                      color: widget.textColor,
-                    ),
+            ),
+            20.verticalSpace,
+            AnimatedBuilder(
+              animation: numberAnimation,
+              builder: (context, child) {
+                return Text(
+                  numberAnimation.value.toString(),
+                  style: TextStyle(
+                    fontSize: 30.sp,
+                    fontWeight: FontWeight.w600,
+                    color: widget.textColor,
                   ),
-                  20.verticalSpace,
-                  Text(
-                    numberAnimation.value.toString(),
-                    style: TextStyle(
-                      fontSize: 30.sp,
-                      fontWeight: FontWeight.w600,
-                      color: widget.textColor,
-                    ),
-                  ),
-                  5.verticalSpace,
-                  Text(
-                    widget.subtitle,
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w400,
-                      color: widget.textColor,
-                    ),
-                  ),
-                ],
+                );
+              },
+            ),
+            5.verticalSpace,
+            Text(
+              'offers',
+              style: TextStyle(
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w400,
+                color: widget.textColor,
               ),
-          
-          ),
-        );
-      },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

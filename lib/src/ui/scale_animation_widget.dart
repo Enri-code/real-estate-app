@@ -6,7 +6,8 @@ class ScaleAnimationWidget extends StatefulWidget {
     required this.delay,
     required this.duration,
     required this.child,
-    this.curve = Curves.easeInQuad,
+    this.curve = Curves.easeOut,
+    this.alignment = Alignment.center,
   });
 
   /// initial delay in milliseconds
@@ -17,6 +18,8 @@ class ScaleAnimationWidget extends StatefulWidget {
 
   /// animation curve
   final Curve curve;
+
+  final AlignmentGeometry alignment;
 
   /// child widget
   final Widget child;
@@ -38,7 +41,9 @@ class _ScaleAnimationWidgetState extends State<ScaleAnimationWidget>
       duration: Duration(milliseconds: widget.duration),
     );
 
-    scaleAnimation = Tween(begin: 0.0, end: 1.0).animate(controller!);
+    scaleAnimation = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: controller!, curve: widget.curve),
+    );
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Future.delayed(Duration(milliseconds: widget.delay)).then(
@@ -61,12 +66,14 @@ class _ScaleAnimationWidgetState extends State<ScaleAnimationWidget>
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-        animation: scaleAnimation,
-        builder: (context, child) {
-          return Transform.scale(
-            scale: scaleAnimation.value,
-            child: widget.child,
-          );
-        });
+      animation: scaleAnimation,
+      builder: (context, child) {
+        return Transform.scale(
+          scale: scaleAnimation.value,
+          alignment: widget.alignment,
+          child: widget.child,
+        );
+      },
+    );
   }
 }

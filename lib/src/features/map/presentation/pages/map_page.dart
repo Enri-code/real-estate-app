@@ -23,12 +23,11 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  final Completer<GoogleMapController> _controller =
-      Completer<GoogleMapController>();
+  final _controller = Completer<GoogleMapController>();
 
   String mapTheme = '';
 
-  static const CameraPosition _kGooglePlex = CameraPosition(
+  static const _kGooglePlex = CameraPosition(
     target: LatLng(6.5243793, 3.3792057),
     zoom: 14.4746,
   );
@@ -36,10 +35,9 @@ class _MapPageState extends State<MapPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final theme = await DefaultAssetBundle.of(context)
-          .loadString('assets/json/google_map_theme.json');
-
+    DefaultAssetBundle.of(context)
+        .loadString('assets/json/google_map_theme.json')
+        .then((theme) {
       if (mounted) setState(() => mapTheme = theme);
       updateAllMarkers();
     });
@@ -96,9 +94,7 @@ class _MapPageState extends State<MapPage> {
             return Positioned(
               top: marker.yAxis,
               left: marker.xAxis,
-              child: CustomMarkerWidget(
-                text: marker.name,
-              ),
+              child: CustomMarkerWidget(text: marker.name),
             );
           }),
           Positioned(
@@ -174,9 +170,7 @@ class _MapPageState extends State<MapPage> {
 
   Future<CustomMarker> updateMarkerCoordinates(CustomMarker marker) async {
     final GoogleMapController controller = await _controller.future;
-    final coordinate = await controller.getScreenCoordinate(
-      marker.position,
-    );
+    final coordinate = await controller.getScreenCoordinate(marker.position);
     // ignore: use_build_context_synchronously
     final ratio = MediaQuery.of(context).devicePixelRatio;
 
@@ -230,7 +224,7 @@ class _MapPageState extends State<MapPage> {
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
+                    color: AppColor.black.withOpacity(0.05),
                     blurRadius: 10,
                     offset: const Offset(0, 4),
                   ),

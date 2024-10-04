@@ -17,8 +17,9 @@ class CustomMarkerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScaleAnimationWidget(
-      delay: 1800,
+      delay: 1500,
       duration: 500,
+      alignment: Alignment.bottomLeft,
       child: BlocBuilder<MapBloc, MapState>(
         builder: (context, state) {
           bool isWide = state.mapInfo == MapInformation.cosyAreas;

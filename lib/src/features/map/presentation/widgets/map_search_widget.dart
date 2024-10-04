@@ -10,7 +10,7 @@ class MapSearchWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScaleAnimationWidget(
-      delay: 1800,
+      delay: 100,
       duration: 500,
       child: Container(
         decoration: BoxDecoration(

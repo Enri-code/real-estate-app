@@ -23,7 +23,6 @@ class _DashboardPageState extends State<DashboardPage>
 
   int tabIndex = 2;
 
-  final Duration navbarDelay = const Duration(seconds: 3);
 
   @override
   void initState() {
@@ -48,7 +47,7 @@ class _DashboardPageState extends State<DashboardPage>
   }
 
   void showNavbar() {
-    Future.delayed(kDuration3Sec, () => dashboardAnimController?.forward());
+    Future.delayed(kDuration1Sec * 6, () => dashboardAnimController?.forward());
   }
 
   Widget currentPage() {
@@ -71,29 +70,22 @@ class _DashboardPageState extends State<DashboardPage>
   @override
   Widget build(BuildContext context) {
     return Stack(
+      alignment: Alignment.center,
       children: [
         AnimatedSwitcher(duration: kDuration1Sec, child: currentPage()),
         AnimatedBuilder(
           animation: animation,
+          child: Container(
+            height: 68.h,
+            padding: EdgeInsets.symmetric(horizontal: 6.r, vertical: 4.r),
+            decoration: BoxDecoration(
+              color: AppColor.black,
+              borderRadius: BorderRadius.circular(40.r),
+            ),
+            child: CustomNavBar(currentIndex: tabIndex, changeTab: changeTab),
+          ),
           builder: (context, child) {
-            return Positioned(
-              bottom: animation.value,
-              right: 50.w,
-              left: 50.w,
-              child: Material(
-                color: Colors.transparent,
-                child: Container(
-                  width: double.maxFinite,
-                  height: 60.h,
-                  padding: EdgeInsets.all(5.r),
-                  decoration: BoxDecoration(
-                    color: AppColor.black,
-                    borderRadius: BorderRadius.circular(30.h),
-                  ),
-                  child: CustomNavBar(tabIndex: tabIndex, changeTab: changeTab),
-                ),
-              ),
-            );
+            return Positioned(bottom: animation.value, child: child!);
           },
         ),
       ],
@@ -101,8 +93,6 @@ class _DashboardPageState extends State<DashboardPage>
   }
 
   void changeTab(int index) {
-    setState(() {
-      tabIndex = index;
-    });
+    setState(() => tabIndex = index);
   }
 }

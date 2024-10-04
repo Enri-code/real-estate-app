@@ -17,7 +17,7 @@ class CircleIconWidget extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: ScaleAnimationWidget(
-        delay: 1800,
+        delay: 100,
         duration: 500,
         child: Container(
           height: 50.r,
@@ -26,10 +26,7 @@ class CircleIconWidget extends StatelessWidget {
             shape: BoxShape.circle,
             color: Colors.white.withOpacity(0.3),
           ),
-          child: Icon(
-            icon,
-            color: Colors.white,
-          ),
+          child: Icon(icon, color: Colors.white),
         ),
       ),
     );

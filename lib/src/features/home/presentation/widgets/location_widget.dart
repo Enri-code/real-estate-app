@@ -1,13 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:real_estate_app/src/styles/app_color.dart';
 import 'package:real_estate_app/src/utils/constants.dart';
 
 class LocationWidget extends StatefulWidget {
-  const LocationWidget({
-    super.key,
-  });
+  const LocationWidget({super.key});
 
   @override
   State<LocationWidget> createState() => _LocationWidgetState();
@@ -22,7 +19,7 @@ class _LocationWidgetState extends State<LocationWidget>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await Future.delayed(kDuration500Mil);
+      await Future.delayed(kDuration300Mil);
       if (mounted) setState(() => animateSize = true);
       await Future.delayed(kDuration1Sec);
       if (mounted) setState(() => animateOpacity = true);
@@ -33,7 +30,8 @@ class _LocationWidgetState extends State<LocationWidget>
   Widget build(BuildContext context) {
     return AnimatedContainer(
       height: 50.h,
-      duration: kDuration1_5Sec,
+      curve: Curves.easeInOut,
+      duration: kDuration1_8Sec,
       constraints: BoxConstraints(maxWidth: animateSize ? 0.5.sw : 0),
       padding: EdgeInsets.symmetric(horizontal: 10.w),
       decoration: BoxDecoration(
@@ -43,6 +41,7 @@ class _LocationWidgetState extends State<LocationWidget>
       child: AnimatedOpacity(
         opacity: animateOpacity ? 1 : 0,
         duration: kDuration500Mil,
+        curve: Curves.easeInOutSine,
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [

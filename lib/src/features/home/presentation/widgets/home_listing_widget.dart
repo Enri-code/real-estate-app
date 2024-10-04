@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:real_estate_app/src/features/home/data/models/home_listing.dart';
 import 'package:real_estate_app/src/features/home/presentation/widgets/listing_grid_tile.dart';
-import 'package:real_estate_app/src/styles/app_color.dart';
 
 class HomeListingWidget extends StatelessWidget {
   const HomeListingWidget({
@@ -13,60 +12,37 @@ class HomeListingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(5.r),
+      padding: EdgeInsets.all(8.r),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(20.r),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: AppColor.primary.withOpacity(0.2),
-            blurRadius: 50,
-          )
-        ],
+        borderRadius: BorderRadius.vertical(top: Radius.circular(32.r)),
       ),
       child: StaggeredGrid.count(
-        crossAxisCount: 4,
+        crossAxisCount: 2,
         mainAxisSpacing: 8.r,
         crossAxisSpacing: 8.r,
-        children: List.generate(HomeListing.data.length, (index) {
-          return gridTile(index);
-        }),
-      ),
-    );
-  }
-
-  Widget gridTile(int index) {
-    int x;
-    int y;
-    switch (index % 4) {
-      case 0:
-        x = 4;
-        y = 2;
-        break;
-      case 1:
-        x = 2;
-        y = 4;
-        break;
-      case 2:
-        x = 2;
-        y = 2;
-        break;
-      case 3:
-        x = 2;
-        y = 2;
-        break;
-      default:
-        throw Exception('wrong index');
-    }
-    return StaggeredGridTile.count(
-      crossAxisCellCount: x,
-      mainAxisCellCount: y,
-      child: ListingGridTile(
-        widthRatio: x,
-        heightRatio: y,
-        listing: HomeListing.data[index],
+        children: [
+          StaggeredGridTile.count(
+            crossAxisCellCount: 2,
+            mainAxisCellCount: 1,
+            child: ListingGridTile(listing: HomeListing.data[0]),
+          ),
+          StaggeredGridTile.count(
+            crossAxisCellCount: 1,
+            mainAxisCellCount: 2,
+            child: ListingGridTile(listing: HomeListing.data[1]),
+          ),
+          StaggeredGridTile.count(
+            crossAxisCellCount: 1,
+            mainAxisCellCount: 1,
+            child: ListingGridTile(listing: HomeListing.data[2]),
+          ),
+          StaggeredGridTile.count(
+            crossAxisCellCount: 1,
+            mainAxisCellCount: 1,
+            child: ListingGridTile(listing: HomeListing.data[3]),
+          ),
+        ],
       ),
     );
   }
