@@ -7,7 +7,9 @@ import 'package:real_estate_app/src/styles/app_color.dart';
 import 'package:real_estate_app/src/utils/constants.dart';
 
 class DashboardPage extends StatefulWidget {
-  const DashboardPage({super.key});
+  const DashboardPage({
+    super.key,
+  });
 
   @override
   State<DashboardPage> createState() => _DashboardPageState();
@@ -19,10 +21,9 @@ class _DashboardPageState extends State<DashboardPage>
   late AnimationController? dashboardAnimController;
   late Animation animation;
 
-  final Duration pageFadeDuration = const Duration(milliseconds: 1000);
-  final Duration navbarDelay = const Duration(seconds: 3);
-
   int tabIndex = 2;
+
+  final Duration navbarDelay = const Duration(seconds: 3);
 
   @override
   void initState() {
@@ -52,7 +53,7 @@ class _DashboardPageState extends State<DashboardPage>
     Future.delayed(navbarDelay, () => dashboardAnimController?.forward());
   }
 
-  Widget currentPage() {
+  Widget changePage() {
     switch (tabIndex) {
       case 0:
         return const MapPage();
@@ -77,8 +78,8 @@ class _DashboardPageState extends State<DashboardPage>
       child: Stack(
         children: [
           AnimatedSwitcher(
-            duration: pageFadeDuration,
-            child: currentPage(),
+            duration: kDuration800Mil,
+            child: changePage(),
           ),
           AnimatedBuilder(
             animation: animation,

@@ -57,6 +57,8 @@ class _UserProfileWidgetState extends State<UserProfileWidget>
               width: 50.r,
               decoration: const BoxDecoration(
                 color: Colors.white,
+                image: DecorationImage(
+                    image: AssetImage('assets/images/profile.jpeg')),
                 shape: BoxShape.circle,
               ),
             ),

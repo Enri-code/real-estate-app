@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:real_estate_app/src/features/dashboard/presentation/bloc/dashboard_bloc.dart';
 import 'package:real_estate_app/src/features/dashboard/presentation/pages/dashboard_page.dart';
+import 'package:real_estate_app/src/features/dashboard/presentation/pages/tab_overlay.dart';
 import 'package:real_estate_app/src/features/map/presentation/bloc/map_bloc.dart';
 
 class MyApp extends StatelessWidget {
@@ -15,29 +17,29 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       ensureScreenSize: true,
       fontSizeResolver: FontSizeResolvers.height,
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) => MapBloc(),
-          ),
-          // BlocProvider(
-          //   create: (context) => SubjectBloc(),
-          // ),
-        ],
-        child: MaterialApp(
-          title: 'Real Estate',
-          builder: (_, widget) {
-            return ScrollConfiguration(
+      child: MaterialApp(
+        title: 'Real Estate',
+        builder: (_, widget) {
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => MapBloc(),
+              ),
+              BlocProvider(
+                create: (context) => DashboardBloc(),
+              ),
+            ],
+            child: ScrollConfiguration(
               behavior: const _GlobalScrollBehavior(),
               child: widget!,
-            );
-          },
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
-          ),
-          home: const DashboardPage(),
+            ),
+          );
+        },
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
         ),
+        home: const DashboardPage(),
       ),
     );
   }

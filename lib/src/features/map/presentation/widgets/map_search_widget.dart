@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:real_estate_app/src/ui/scale_animation_widget.dart';
 
 class MapSearchWidget extends StatelessWidget {
   const MapSearchWidget({
@@ -8,30 +9,34 @@ class MapSearchWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30.r),
-        color: Colors.white,
-      ),
-      alignment: Alignment.center,
-      child: Row(
-        children: [
-          Container(
-            height: 45.h,
-            width: 45.h,
-            alignment: Alignment.center,
-            child: const Icon(Icons.search),
-          ),
-          const Expanded(
-            child: TextField(
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.zero,
-                border: InputBorder.none,
-                isDense: false,
+    return ScaleAnimationWidget(
+      delay: 1800,
+      duration: 500,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30.r),
+          color: Colors.white,
+        ),
+        alignment: Alignment.center,
+        child: Row(
+          children: [
+            Container(
+              height: 45.h,
+              width: 45.h,
+              alignment: Alignment.center,
+              child: const Icon(Icons.search),
+            ),
+            const Expanded(
+              child: TextField(
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.zero,
+                  border: InputBorder.none,
+                  isDense: false,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

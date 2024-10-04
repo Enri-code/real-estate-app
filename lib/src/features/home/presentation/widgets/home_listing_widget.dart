@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:real_estate_app/src/features/home/data/models/home_listing.dart';
 import 'package:real_estate_app/src/features/home/presentation/widgets/listing_grid_tile.dart';
+import 'package:real_estate_app/src/styles/app_color.dart';
 
 class HomeListingWidget extends StatelessWidget {
   const HomeListingWidget({
@@ -10,13 +12,28 @@ class HomeListingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StaggeredGrid.count(
-      crossAxisCount: 4,
-      mainAxisSpacing: 8.r,
-      crossAxisSpacing: 8.r,
-      children: List.generate(4, (index) {
-        return gridTile(index);
-      }),
+    return Container(
+      padding: EdgeInsets.all(5.r),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(20.r),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: AppColor.primary.withOpacity(0.2),
+            blurRadius: 50,
+          )
+        ],
+      ),
+      child: StaggeredGrid.count(
+        crossAxisCount: 4,
+        mainAxisSpacing: 8.r,
+        crossAxisSpacing: 8.r,
+        children: List.generate(HomeListing.data.length, (index) {
+          return gridTile(index);
+        }),
+      ),
     );
   }
 
@@ -49,6 +66,7 @@ class HomeListingWidget extends StatelessWidget {
       child: ListingGridTile(
         widthRatio: x,
         heightRatio: y,
+        listing: HomeListing.data[index],
       ),
     );
   }
