@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:real_estate_app/src/data/app_images.dart';
 import 'package:real_estate_app/src/styles/app_color.dart';
 import 'package:real_estate_app/src/utils/constants.dart';
 
@@ -57,32 +58,32 @@ class _CustomNavBarState extends State<CustomNavBar>
         return Row(
           children: [
             NavigationTabIcon(
-              icon: Icons.maps_ugc,
+              icon: AppImages.mapPin,
               selected: 0 == widget.currentIndex,
               onTap: () => _onSelectTab(0),
               color: getColor(0),
             ),
             NavigationTabIcon(
-              icon: Icons.message_rounded,
+              icon: AppImages.message,
               selected: 1 == widget.currentIndex,
               onTap: () => _onSelectTab(1),
               color: getColor(1),
             ),
             NavigationTabIcon(
-              icon: Icons.home,
+              icon: AppImages.home,
               selected: 2 == widget.currentIndex,
               size: 28,
               onTap: () => _onSelectTab(2),
               color: getColor(2),
             ),
             NavigationTabIcon(
-              icon: Icons.favorite,
+              icon: AppImages.heart,
               selected: 3 == widget.currentIndex,
               onTap: () => _onSelectTab(3),
               color: getColor(3),
             ),
             NavigationTabIcon(
-              icon: Icons.person,
+              icon: AppImages.person,
               selected: 4 == widget.currentIndex,
               onTap: () => _onSelectTab(4),
               color: getColor(4),
@@ -119,7 +120,7 @@ class NavigationTabIcon extends StatelessWidget {
     this.size,
   });
 
-  final IconData icon;
+  final String icon;
   final double? size;
   final Color color;
   final bool selected;
@@ -143,7 +144,12 @@ class NavigationTabIcon extends StatelessWidget {
                 child: SizedBox.square(dimension: selected ? 56.r : 44.r),
               ),
             ),
-            Icon(icon, color: Colors.white, size: size),
+            Image.asset(
+              icon,
+              color: Colors.white,
+              width: 20.r,
+              height: 20.r,
+            ),
           ],
         ),
       ),

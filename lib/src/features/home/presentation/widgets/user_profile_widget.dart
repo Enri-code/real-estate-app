@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:real_estate_app/src/data/app_images.dart';
 import 'package:real_estate_app/src/ui/scale_animation_widget.dart';
 
 class UserProfileWidget extends StatelessWidget {
@@ -16,7 +17,7 @@ class UserProfileWidget extends StatelessWidget {
         decoration: const BoxDecoration(
           color: Colors.white,
           image: DecorationImage(
-            image: AssetImage('assets/images/profile.png'),
+            image: AssetImage(AppImages.profile),
           ),
           shape: BoxShape.circle,
         ),

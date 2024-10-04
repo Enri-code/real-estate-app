@@ -9,7 +9,7 @@ class CircleIconWidget extends StatelessWidget {
     this.onTap,
   });
 
-  final IconData icon;
+  final String icon;
   final void Function()? onTap;
 
   @override
@@ -26,7 +26,13 @@ class CircleIconWidget extends StatelessWidget {
             shape: BoxShape.circle,
             color: Colors.white.withOpacity(0.3),
           ),
-          child: Icon(icon, color: Colors.white),
+          alignment: Alignment.center,
+          child: Image.asset(
+            icon,
+            color: Colors.white,
+            width: 15.r,
+            height: 15.r,
+          ),
         ),
       ),
     );

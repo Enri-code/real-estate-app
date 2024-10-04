@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:real_estate_app/src/data/app_images.dart';
 import 'package:real_estate_app/src/ui/scale_animation_widget.dart';
 
 class MapSearchWidget extends StatelessWidget {
@@ -24,7 +25,12 @@ class MapSearchWidget extends StatelessWidget {
               height: 45.h,
               width: 45.h,
               alignment: Alignment.center,
-              child: const Icon(Icons.search),
+              child: Image.asset(
+                AppImages.search,
+                color: Colors.black,
+                width: 15.r,
+                height: 15.r,
+              ),
             ),
             const Expanded(
               child: TextField(

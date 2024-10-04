@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:real_estate_app/src/data/app_images.dart';
 import 'package:real_estate_app/src/utils/enums/map_information.dart';
 import 'package:real_estate_app/src/features/map/data/models/custom_marker.dart';
 import 'package:real_estate_app/src/features/map/presentation/bloc/map_bloc.dart';
@@ -125,7 +126,7 @@ class _MapPageState extends State<MapPage> {
               children: [
                 dropUpWidget(),
                 5.verticalSpace,
-                const CircleIconWidget(icon: Icons.send),
+                const CircleIconWidget(icon: AppImages.send),
               ],
             ),
           ),
@@ -146,10 +147,11 @@ class _MapPageState extends State<MapPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(
-                      Icons.sort,
-                      size: 15,
+                    Image.asset(
+                      AppImages.list,
                       color: Colors.white,
+                      width: 15.r,
+                      height: 15.r,
                     ),
                     5.horizontalSpace,
                     const Text(
@@ -184,7 +186,7 @@ class _MapPageState extends State<MapPage> {
       builder: (context, state) {
         return DropdownButtonHideUnderline(
           child: DropdownButton2(
-            customButton: const CircleIconWidget(icon: Icons.wallet_outlined),
+            customButton: const CircleIconWidget(icon: AppImages.wallet),
             onChanged: (info) {
               if (info != null) {
                 context.read<MapBloc>().add(ChangeMarkerInfo(info));
@@ -197,9 +199,10 @@ class _MapPageState extends State<MapPage> {
                 value: menu,
                 child: Row(
                   children: [
-                    Icon(
+                    Image.asset(
                       menu.icon,
-                      size: 15,
+                      width: 15.r,
+                      height: 15.r,
                       color: selected ? AppColor.primary : AppColor.grey,
                     ),
                     5.horizontalSpace,
