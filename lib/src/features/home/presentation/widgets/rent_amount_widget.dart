@@ -66,12 +66,12 @@ class _RentAmountWidgetState extends State<RentAmountWidget>
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20.r),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColor.primary.withOpacity(0.2),
-                    blurRadius: 50,
-                  )
-                ],
+                // boxShadow: [
+                //   BoxShadow(
+                //     color: AppColor.primary.withOpacity(0.2),
+                //     blurRadius: 50,
+                //   )
+                // ],
               ),
               child: Column(
                 children: [
@@ -81,7 +81,7 @@ class _RentAmountWidgetState extends State<RentAmountWidget>
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w400,
-                      color: const Color(0xFFa6957e),
+                      color: AppColor.grey,
                     ),
                   ),
                   20.verticalSpace,
@@ -90,7 +90,7 @@ class _RentAmountWidgetState extends State<RentAmountWidget>
                     style: TextStyle(
                       fontSize: 30.sp,
                       fontWeight: FontWeight.w600,
-                      color: const Color(0xFFa6957e),
+                      color: AppColor.grey,
                     ),
                   ),
                   5.verticalSpace,
@@ -99,7 +99,7 @@ class _RentAmountWidgetState extends State<RentAmountWidget>
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w400,
-                      color: const Color(0xFFa6957e),
+                      color: AppColor.grey,
                     ),
                   ),
                 ],

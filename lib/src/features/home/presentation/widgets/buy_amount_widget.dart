@@ -53,57 +53,58 @@ class _BuyAmountWidgetState extends State<BuyAmountWidget>
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-        animation: scaleAnimation,
-        builder: (context, child) {
-          return Transform.scale(
-            scale: scaleAnimation.value,
-            alignment: Alignment.center,
-            child: Container(
-              height: 170.r,
-              width: 170.r,
-              decoration: BoxDecoration(
-                color: AppColor.primary,
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColor.primary.withOpacity(0.2),
-                    blurRadius: 50,
-                  )
-                ],
-              ),
-              child: Column(
-                children: [
-                  10.verticalSpace,
-                  Text(
-                    "BUY",
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.white,
-                    ),
-                  ),
-                  20.verticalSpace,
-                  Text(
-                    numberAnimation.value.toString(),
-                    style: TextStyle(
-                      fontSize: 30.sp,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
-                  ),
-                  5.verticalSpace,
-                  Text(
-                    "offers",
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              ),
+      animation: scaleAnimation,
+      builder: (context, child) {
+        return Transform.scale(
+          scale: scaleAnimation.value,
+          alignment: Alignment.center,
+          child: Container(
+            height: 170.r,
+            width: 170.r,
+            decoration: BoxDecoration(
+              color: AppColor.primary,
+              shape: BoxShape.circle,
+              // boxShadow: [
+              //   BoxShadow(
+              //     color: AppColor.primary.withOpacity(0.2),
+              //     blurRadius: 50,
+              //   )
+              // ],
             ),
-          );
-        });
+            child: Column(
+              children: [
+                10.verticalSpace,
+                Text(
+                  "BUY",
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.white,
+                  ),
+                ),
+                20.verticalSpace,
+                Text(
+                  numberAnimation.value.toString(),
+                  style: TextStyle(
+                    fontSize: 30.sp,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
+                ),
+                5.verticalSpace,
+                Text(
+                  "offers",
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 }

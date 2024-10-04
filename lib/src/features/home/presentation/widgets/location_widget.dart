@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:real_estate_app/src/styles/app_color.dart';
 import 'package:real_estate_app/src/utils/constants.dart';
 
 class LocationWidget extends StatefulWidget {
@@ -49,7 +50,7 @@ class _LocationWidgetState extends State<LocationWidget>
             Icon(
               Icons.location_on_rounded,
               size: 16.sp,
-              color: const Color(0xFFa6957e),
+              color: AppColor.grey,
             ),
             3.horizontalSpace,
             Flexible(
@@ -58,7 +59,7 @@ class _LocationWidgetState extends State<LocationWidget>
                 style: TextStyle(
                   fontSize: 16.sp,
                   fontWeight: FontWeight.w400,
-                  color: const Color(0xFFa6957e),
+                  color: AppColor.grey,
                   overflow: TextOverflow.ellipsis,
                 ),
               ),

@@ -5,6 +5,7 @@ import 'package:real_estate_app/src/features/home/presentation/widgets/home_list
 import 'package:real_estate_app/src/features/home/presentation/widgets/location_widget.dart';
 import 'package:real_estate_app/src/features/home/presentation/widgets/rent_amount_widget.dart';
 import 'package:real_estate_app/src/features/home/presentation/widgets/user_profile_widget.dart';
+import 'package:real_estate_app/src/styles/app_color.dart';
 import 'package:real_estate_app/src/utils/constants.dart';
 
 class HomePage extends StatefulWidget {
@@ -67,64 +68,72 @@ class _HomePageState extends State<HomePage>
         },
         child: Stack(
           children: [
-            Positioned.fill(
-              child: Container(
-                decoration: const BoxDecoration(
-                  gradient: RadialGradient(
-                    colors: [Color(0xfffed9b1), Color(0xfff9f7f5)],
-                    focal: Alignment(0.9, -.2),
-                    center: Alignment(0.5, 0.3),
-                    radius: 0.7,
-                  ),
+            Container(
+              decoration: const BoxDecoration(
+                gradient: RadialGradient(
+                  colors: [Color(0xfffed9b1), Color(0xfff9f7f5)],
+                  focal: Alignment(1, 0.3),
+                  center: Alignment(0.7, 0.4),
+                  radius: 0.9,
                 ),
               ),
             ),
-            Positioned.fill(
-              child: SafeArea(
+            SafeArea(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: Column(
                   children: [
                     10.verticalSpace,
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20.w),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          LocationWidget(),
-                          UserProfileWidget(),
-                        ],
-                      ),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [LocationWidget(), UserProfileWidget()],
                     ),
-
-                    50.verticalSpace,
-                    // AnimatedTextKit(
-                    //   animatedTexts: [
-                    //     FadeAnimatedText(
-                    //       'Fade First',
-                    //       textStyle: TextStyle(
-                    //           fontSize: 32.0, fontWeight: FontWeight.bold),
-                    //     ),
-                    //     ScaleAnimatedText(
-                    //       'Then Scale',
-                    //       textStyle: TextStyle(
-                    //           fontSize: 70.0, fontFamily: 'Canterbury'),
-                    //     ),
-                    //   ],
-                    // ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20.w),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          BuyAmountWidget(amount: 982),
-                          RentAmountWidget(amount: 1200),
-                        ],
-                      ),
+                    40.verticalSpace,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(
+                          "Hi, Marina",
+                          style: TextStyle(
+                            fontSize: 24.sp,
+                            height: 1,
+                            color: AppColor.grey,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        8.verticalSpace,
+                        Text(
+                          "let's select your",
+                          style: TextStyle(
+                            fontSize: 40.sp,
+                            height: 1,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Text(
+                          "perfect place",
+                          style: TextStyle(
+                            fontSize: 40.sp,
+                            height: 1,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                    32.verticalSpace,
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        BuyAmountWidget(amount: 982),
+                        RentAmountWidget(amount: 1200),
+                      ],
                     )
                   ],
                 ),
               ),
             ),
             // HomeListingWidget(),
+            // if (false)
             AnimatedBuilder(
               animation: slideAnimation,
               builder: (context, child) {
@@ -134,7 +143,7 @@ class _HomePageState extends State<HomePage>
                   right: 0,
                   child: Container(
                     constraints: BoxConstraints(
-                      maxHeight: 0.85.sh * slideAnimation.value,
+                      maxHeight: 0.7.sh * slideAnimation.value,
                     ),
                     padding: EdgeInsets.all(5.r),
                     decoration: BoxDecoration(
