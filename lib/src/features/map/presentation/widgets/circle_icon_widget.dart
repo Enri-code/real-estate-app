@@ -18,7 +18,7 @@ class CircleIconWidget extends StatelessWidget {
       onTap: onTap,
       child: ScaleAnimationWidget(
         delay: 1800,
-        duration: 200,
+        duration: 500,
         child: Container(
           height: 50.r,
           width: 50.r,

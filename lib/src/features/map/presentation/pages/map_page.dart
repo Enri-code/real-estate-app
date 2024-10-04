@@ -13,6 +13,7 @@ import 'package:real_estate_app/src/features/map/presentation/widgets/custom_mar
 import 'package:real_estate_app/src/features/map/presentation/widgets/map_filter_widget.dart';
 import 'package:real_estate_app/src/features/map/presentation/widgets/map_search_widget.dart';
 import 'package:real_estate_app/src/styles/app_color.dart';
+import 'package:real_estate_app/src/ui/scale_animation_widget.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
@@ -135,12 +136,34 @@ class _MapPageState extends State<MapPage> {
           Positioned(
             right: 20.w,
             bottom: 100.h,
-            child: Container(
-              height: 50.r,
-              width: 150.r,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30.r),
-                color: Colors.white.withOpacity(0.3),
+            child: ScaleAnimationWidget(
+              delay: 1800,
+              duration: 500,
+              child: Container(
+                height: 50.r,
+                width: 150.r,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30.r),
+                  color: Colors.white.withOpacity(0.3),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.sort,
+                      size: 15,
+                      color: Colors.white,
+                    ),
+                    5.horizontalSpace,
+                    const Text(
+                      'List of variants',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           )

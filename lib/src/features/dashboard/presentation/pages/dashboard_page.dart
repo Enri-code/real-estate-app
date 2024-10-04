@@ -7,7 +7,9 @@ import 'package:real_estate_app/src/styles/app_color.dart';
 import 'package:real_estate_app/src/utils/constants.dart';
 
 class DashboardPage extends StatefulWidget {
-  const DashboardPage({super.key});
+  const DashboardPage({
+    super.key,
+  });
 
   @override
   State<DashboardPage> createState() => _DashboardPageState();
@@ -20,6 +22,8 @@ class _DashboardPageState extends State<DashboardPage>
   late Animation animation;
 
   int tabIndex = 2;
+
+  final Duration navbarDelay = const Duration(seconds: 3);
 
   @override
   void initState() {

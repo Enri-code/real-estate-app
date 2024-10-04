@@ -45,21 +45,22 @@ class _UserProfileWidgetState extends State<UserProfileWidget>
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: scaleAnimation,
-      child: Container(
-        width: 50.r,
-        height: 50.r,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          shape: BoxShape.circle,
-          image: DecorationImage(
-            image: AssetImage('assets/images/profile.png'),
-          ),
-        ),
-      ),
-      builder: (context, child) {
-        return Transform.scale(scale: scaleAnimation.value, child: child);
-      },
-    );
+        animation: scaleAnimation,
+        builder: (context, child) {
+          return Transform.scale(
+            scale: scaleAnimation.value,
+            alignment: Alignment.center,
+            child: Container(
+              height: 50.r,
+              width: 50.r,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                image: DecorationImage(
+                    image: AssetImage('assets/images/profile.jpeg')),
+                shape: BoxShape.circle,
+              ),
+            ),
+          );
+        });
   }
 }

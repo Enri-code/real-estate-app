@@ -1,24 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:real_estate_app/src/styles/app_color.dart';
 import 'package:real_estate_app/src/utils/constants.dart';
 
-class RentAmountWidget extends StatefulWidget {
-  final int amount;
-  const RentAmountWidget({
+class HomeCountdownWidget extends StatefulWidget {
+  const HomeCountdownWidget({
     super.key,
-    required this.amount,
+    required this.countDown,
+    required this.title,
+    required this.subtitle,
+    required this.backgroundColor,
+    required this.textColor,
+    required this.borderRadius,
   });
 
+  final int countDown;
+  final String title;
+  final String subtitle;
+  final Color backgroundColor;
+  final Color textColor;
+  final double borderRadius;
+
   @override
-  State<RentAmountWidget> createState() => _RentAmountWidgetState();
+  State<HomeCountdownWidget> createState() => _HomeCountdownWidgetState();
 }
 
-class _RentAmountWidgetState extends State<RentAmountWidget>
+class _HomeCountdownWidgetState extends State<HomeCountdownWidget>
     with SingleTickerProviderStateMixin {
   late AnimationController? controller;
-  late Animation<double> scaleAnimation;
-  late Animation<int> numberAnimation;
+  late Animation scaleAnimation;
+  late Animation numberAnimation;
 
   @override
   void initState() {
@@ -30,12 +40,10 @@ class _RentAmountWidgetState extends State<RentAmountWidget>
       TweenSequenceItem(tween: Tween(begin: 1.0, end: 1.0), weight: 0.5),
     ]).animate(controller!);
     numberAnimation =
-        IntTween(begin: 0, end: widget.amount).animate(controller!);
+        IntTween(begin: 0, end: widget.countDown).animate(controller!);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.delayed(
-        kDuration800Mil,
-      ).then(
+      Future.delayed(kDuration800Mil).then(
         (_) {
           if (controller != null) {
             controller?.forward();
@@ -64,8 +72,8 @@ class _RentAmountWidgetState extends State<RentAmountWidget>
               height: 170.r,
               width: 170.r,
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20.r),
+                color: widget.backgroundColor,
+                borderRadius: BorderRadius.circular(widget.borderRadius),
                 // boxShadow: [
                 //   BoxShadow(
                 //     color: AppColor.primary.withOpacity(0.2),
@@ -77,11 +85,11 @@ class _RentAmountWidgetState extends State<RentAmountWidget>
                 children: [
                   10.verticalSpace,
                   Text(
-                    "RENT",
+                    widget.title,
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w400,
-                      color: AppColor.grey,
+                      color: widget.textColor,
                     ),
                   ),
                   20.verticalSpace,
@@ -90,22 +98,24 @@ class _RentAmountWidgetState extends State<RentAmountWidget>
                     style: TextStyle(
                       fontSize: 30.sp,
                       fontWeight: FontWeight.w600,
-                      color: AppColor.grey,
+                      color: widget.textColor,
                     ),
                   ),
                   5.verticalSpace,
                   Text(
-                    "offers",
+                    widget.subtitle,
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w400,
-                      color: AppColor.grey,
+                      color: widget.textColor,
                     ),
                   ),
                 ],
               ),
-            ),
-          );
-        });
+          
+          ),
+        );
+      },
+    );
   }
 }
