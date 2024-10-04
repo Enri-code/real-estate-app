@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:real_estate_app/src/features/home/data/models/home_listing.dart';
+import 'package:real_estate_app/src/features/home/presentation/bloc/home_bloc.dart';
 import 'package:real_estate_app/src/features/home/presentation/widgets/listing_grid_tile.dart';
 import 'package:real_estate_app/src/styles/app_color.dart';
 
@@ -26,18 +28,25 @@ class HomeListingWidget extends StatelessWidget {
           )
         ],
       ),
-      child: StaggeredGrid.count(
-        crossAxisCount: 4,
-        mainAxisSpacing: 8.r,
-        crossAxisSpacing: 8.r,
-        children: List.generate(HomeListing.data.length, (index) {
-          return gridTile(index);
-        }),
+      child: BlocBuilder<HomeBloc, HomeState>(
+        builder: (context, state) {
+          return StaggeredGrid.count(
+            crossAxisCount: 4,
+            mainAxisSpacing: 8.r,
+            crossAxisSpacing: 8.r,
+            children: List.generate(state.listing.length, (index) {
+              return gridTile(
+                index,
+                state.listing[index],
+              );
+            }),
+          );
+        },
       ),
     );
   }
 
-  Widget gridTile(int index) {
+  Widget gridTile(int index, HomeListing listing) {
     int x;
     int y;
     switch (index % 4) {
@@ -66,7 +75,7 @@ class HomeListingWidget extends StatelessWidget {
       child: ListingGridTile(
         widthRatio: x,
         heightRatio: y,
-        listing: HomeListing.data[index],
+        listing: listing,
       ),
     );
   }
