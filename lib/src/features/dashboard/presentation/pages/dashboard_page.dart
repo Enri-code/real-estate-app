@@ -19,22 +19,17 @@ class _DashboardPageState extends State<DashboardPage>
   late AnimationController? dashboardAnimController;
   late Animation animation;
 
-  final Duration pageFadeDuration = const Duration(milliseconds: 1000);
-  final Duration navbarDelay = const Duration(seconds: 3);
-
   int tabIndex = 2;
 
   @override
   void initState() {
     super.initState();
     dashboardAnimController =
-        AnimationController(duration: kDuration300Mil, vsync: this);
-    animation = Tween<double>(begin: -100.0, end: 20.0).animate(
-      CurvedAnimation(
-        parent: dashboardAnimController!,
-        curve: Curves.easeInCubic,
-      ),
-    );
+        AnimationController(duration: kDuration1Sec, vsync: this);
+    animation = Tween<double>(begin: -100.0, end: 20.0).animate(CurvedAnimation(
+      parent: dashboardAnimController!,
+      curve: Curves.easeOut,
+    ));
     WidgetsBinding.instance.addPostFrameCallback((_) {
       showNavbar();
     });
@@ -49,7 +44,7 @@ class _DashboardPageState extends State<DashboardPage>
   }
 
   void showNavbar() {
-    Future.delayed(navbarDelay, () => dashboardAnimController?.forward());
+    Future.delayed(kDuration3Sec, () => dashboardAnimController?.forward());
   }
 
   Widget currentPage() {
@@ -71,41 +66,33 @@ class _DashboardPageState extends State<DashboardPage>
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      child: Stack(
-        children: [
-          AnimatedSwitcher(
-            duration: pageFadeDuration,
-            child: currentPage(),
-          ),
-          AnimatedBuilder(
-            animation: animation,
-            builder: (context, child) {
-              return Positioned(
-                bottom: animation.value,
-                right: 50.w,
-                left: 50.w,
-                child: Material(
-                  color: Colors.transparent,
-                  child: Container(
-                    width: double.maxFinite,
-                    height: 60.h,
-                    padding: EdgeInsets.all(5.r),
-                    decoration: BoxDecoration(
-                      color: AppColor.black,
-                      borderRadius: BorderRadius.circular(30.h),
-                    ),
-                    child:
-                        CustomNavBar(tabIndex: tabIndex, changeTab: changeTab),
+    return Stack(
+      children: [
+        AnimatedSwitcher(duration: kDuration1Sec, child: currentPage()),
+        AnimatedBuilder(
+          animation: animation,
+          builder: (context, child) {
+            return Positioned(
+              bottom: animation.value,
+              right: 50.w,
+              left: 50.w,
+              child: Material(
+                color: Colors.transparent,
+                child: Container(
+                  width: double.maxFinite,
+                  height: 60.h,
+                  padding: EdgeInsets.all(5.r),
+                  decoration: BoxDecoration(
+                    color: AppColor.black,
+                    borderRadius: BorderRadius.circular(30.h),
                   ),
+                  child: CustomNavBar(tabIndex: tabIndex, changeTab: changeTab),
                 ),
-              );
-            },
-          ),
-        ],
-      ),
+              ),
+            );
+          },
+        ),
+      ],
     );
   }
 

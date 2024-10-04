@@ -5,7 +5,7 @@ import 'package:real_estate_app/src/features/home/presentation/widgets/home_list
 import 'package:real_estate_app/src/features/home/presentation/widgets/location_widget.dart';
 import 'package:real_estate_app/src/features/home/presentation/widgets/rent_amount_widget.dart';
 import 'package:real_estate_app/src/features/home/presentation/widgets/user_profile_widget.dart';
-import 'package:real_estate_app/src/styles/app_color.dart';
+import 'package:real_estate_app/src/utils/constants.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -24,13 +24,15 @@ class _HomePageState extends State<HomePage>
     super.initState();
     homeAnimontroller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 600),
+      duration: kDuration500Mil,
     );
 
-    slideAnimation = Tween(begin: 0.0, end: 1.0).animate(homeAnimontroller!);
+    slideAnimation = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: homeAnimontroller!, curve: Curves.easeInOut),
+    );
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.delayed(const Duration(milliseconds: 1800)).then((_) async {
+      Future.delayed(kDuration1Sec).then((_) async {
         if (homeAnimontroller != null) {
           await homeAnimontroller?.forward();
 
@@ -54,7 +56,7 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFf8f8f8),
+      // backgroundColor: const Color(0xFFf8f8f8),
       body: GestureDetector(
         onVerticalDragEnd: (DragEndDetails details) {
           if ((details.primaryVelocity ?? 0) > 0) {
@@ -65,6 +67,18 @@ class _HomePageState extends State<HomePage>
         },
         child: Stack(
           children: [
+            Positioned.fill(
+              child: Container(
+                decoration: const BoxDecoration(
+                  gradient: RadialGradient(
+                    colors: [Color(0xfffed9b1), Color(0xfff9f7f5)],
+                    focal: Alignment(0.9, -.2),
+                    center: Alignment(0.5, 0.3),
+                    radius: 0.7,
+                  ),
+                ),
+              ),
+            ),
             Positioned.fill(
               child: SafeArea(
                 child: Column(
@@ -101,12 +115,8 @@ class _HomePageState extends State<HomePage>
                       child: const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          BuyAmountWidget(
-                            amount: 982,
-                          ),
-                          RentAmountWidget(
-                            amount: 1200,
-                          ),
+                          BuyAmountWidget(amount: 982),
+                          RentAmountWidget(amount: 1200),
                         ],
                       ),
                     )
@@ -130,14 +140,14 @@ class _HomePageState extends State<HomePage>
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(20.r),
+                        top: Radius.circular(24.r),
                       ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: AppColor.primary.withOpacity(0.2),
-                          blurRadius: 50,
-                        )
-                      ],
+                      // boxShadow: [
+                      //   BoxShadow(
+                      //     color: AppColor.primary.withOpacity(0.2),
+                      //     blurRadius: 50,
+                      //   )
+                      // ],
                     ),
                     child: const HomeListingWidget(),
                   ),

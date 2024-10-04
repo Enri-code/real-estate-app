@@ -21,17 +21,15 @@ class _UserProfileWidgetState extends State<UserProfileWidget>
     super.initState();
     controller = AnimationController(
       vsync: this,
-      duration: kDuration800Mil,
+      duration: kDuration1Sec,
     );
 
     scaleAnimation = Tween(begin: 0.0, end: 1.0).animate(controller!);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.delayed(kDuration800Mil).then(
+      Future.delayed(kDuration500Mil).then(
         (_) {
-          if (controller != null) {
-            controller?.forward();
-          }
+          if (controller != null) controller?.forward();
         },
       );
     });
@@ -47,20 +45,21 @@ class _UserProfileWidgetState extends State<UserProfileWidget>
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-        animation: scaleAnimation,
-        builder: (context, child) {
-          return Transform.scale(
-            scale: scaleAnimation.value,
-            alignment: Alignment.center,
-            child: Container(
-              height: 50.r,
-              width: 50.r,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle,
-              ),
-            ),
-          );
-        });
+      animation: scaleAnimation,
+      child: Container(
+        width: 50.r,
+        height: 50.r,
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          shape: BoxShape.circle,
+          image: DecorationImage(
+            image: AssetImage('assets/images/profile.png'),
+          ),
+        ),
+      ),
+      builder: (context, child) {
+        return Transform.scale(scale: scaleAnimation.value, child: child);
+      },
+    );
   }
 }

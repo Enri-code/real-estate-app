@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:real_estate_app/src/utils/constants.dart';
@@ -13,72 +14,59 @@ class LocationWidget extends StatefulWidget {
 
 class _LocationWidgetState extends State<LocationWidget>
     with SingleTickerProviderStateMixin {
-  late AnimationController? controller;
-  late Animation fadeAnimation;
+  bool animateSize = false;
+  bool animateOpacity = false;
 
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(
-      vsync: this,
-      duration: kDuration800Mil,
-    );
-
-    fadeAnimation = Tween(begin: 0.0, end: 1.0).animate(controller!);
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.delayed(kDuration800Mil).then(
-        (_) {
-          if (controller != null) {
-            controller?.forward();
-          }
-        },
-      );
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await Future.delayed(kDuration500Mil);
+      if (mounted) setState(() => animateSize = true);
+      await Future.delayed(kDuration1Sec);
+      if (mounted) setState(() => animateOpacity = true);
     });
   }
 
   @override
-  void dispose() {
-    controller?.dispose();
-    controller = null;
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-        animation: fadeAnimation,
-        builder: (context, child) {
-          return Opacity(
-            opacity: fadeAnimation.value,
-            child: Container(
-              height: 50.h,
-              padding: EdgeInsets.symmetric(horizontal: 10.w),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(5.r),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(
-                    Icons.location_on,
-                    size: 15,
-                    color: Color(0xFFa6957e),
-                  ),
-                  2.horizontalSpace,
-                  Text(
-                    "Saint Petersburg",
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w400,
-                      color: const Color(0xFFa6957e),
-                    ),
-                  ),
-                ],
+    return AnimatedContainer(
+      height: 50.h,
+      duration: kDuration1_5Sec,
+      constraints: BoxConstraints(maxWidth: animateSize ? 0.5.sw : 0),
+      padding: EdgeInsets.symmetric(horizontal: 10.w),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12.r),
+      ),
+      child: AnimatedOpacity(
+        opacity: animateOpacity ? 1 : 0,
+        duration: kDuration500Mil,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            2.horizontalSpace,
+            Icon(
+              Icons.location_on_rounded,
+              size: 16.sp,
+              color: const Color(0xFFa6957e),
+            ),
+            3.horizontalSpace,
+            Flexible(
+              child: Text(
+                "Saint Petersburg",
+                style: TextStyle(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w400,
+                  color: const Color(0xFFa6957e),
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ),
-          );
-        });
+            6.horizontalSpace,
+          ],
+        ),
+      ),
+    );
   }
 }

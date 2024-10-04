@@ -64,7 +64,7 @@ class _ListingGridTileState extends State<ListingGridTile>
     );
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.delayed(const Duration(seconds: 2)).then((_) {
+      Future.delayed(kDuration2Sec).then((_) {
         if (controller != null) {
           controller!.forward();
         }
@@ -93,7 +93,7 @@ class _ListingGridTileState extends State<ListingGridTile>
             ),
             child: AnimatedContainer(
               padding: EdgeInsets.all(5.r),
-              duration: const Duration(milliseconds: 600),
+              duration: kDuration500Mil,
               height: expandHeightAnimation.value,
               width: expandWidthAnimation.value,
               // alignment: startAnimation ? Alignment.centerRight : Alignment.center,
