@@ -6,3 +6,9 @@ abstract class MapEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class ChangeMarkerInfo extends MapEvent {
+  const ChangeMarkerInfo(this.information);
+
+  final MapInformation information;
+}
