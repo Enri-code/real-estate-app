@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:real_estate_app/src/data/app_images.dart';
 import 'package:real_estate_app/src/utils/enums/map_information.dart';
 import 'package:real_estate_app/src/features/map/presentation/bloc/map_bloc.dart';
 import 'package:real_estate_app/src/styles/app_color.dart';
@@ -38,9 +39,11 @@ class CustomMarkerWidget extends StatelessWidget {
             ),
             child: Builder(builder: (context) {
               if (isWide) {
-                return const Icon(
-                  Icons.business,
+                return Image.asset(
+                  AppImages.building,
                   color: Colors.white,
+                  width: 15.r,
+                  height: 15.r,
                 );
               }
 

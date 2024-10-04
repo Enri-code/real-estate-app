@@ -31,6 +31,7 @@ dependencies:
   blur: ^4.0.0
   cupertino_icons: ^1.0.8
   dropdown_button2: ^2.3.9
+  either_dart: ^1.0.0
   equatable: ^2.0.5
   flutter:
     sdk: flutter
@@ -57,6 +58,7 @@ flutter:
   assets:
     - assets/json/google_map_theme.json
     - assets/images/home/
+    - assets/images/icons/
     - assets/images/
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see

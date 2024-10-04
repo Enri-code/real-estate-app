@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:real_estate_app/src/features/dashboard/presentation/bloc/dashboard_bloc.dart';
 import 'package:real_estate_app/src/features/dashboard/presentation/pages/dashboard_page.dart';
-import 'package:real_estate_app/src/features/dashboard/presentation/pages/tab_overlay.dart';
 import 'package:real_estate_app/src/features/map/presentation/bloc/map_bloc.dart';
 
 class MyApp extends StatelessWidget {

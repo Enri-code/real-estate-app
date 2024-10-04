@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:real_estate_app/src/data/app_images.dart';
 import 'package:real_estate_app/src/ui/scale_animation_widget.dart';
 
 class MapFilterWidget extends StatelessWidget {
@@ -17,9 +19,11 @@ class MapFilterWidget extends StatelessWidget {
           shape: BoxShape.circle,
           color: Colors.white,
         ),
-        child: const Icon(
-          Icons.tune,
-          size: 15,
+        child: Image.asset(
+          AppImages.filter,
+          color: Colors.black,
+          width: 15.r,
+          height: 15.r,
         ),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:real_estate_app/src/data/app_images.dart';
 
 enum MapInformation {
   price,
@@ -6,16 +7,16 @@ enum MapInformation {
   infrastructure,
   withoutLayers;
 
-  IconData get icon {
+  String get icon {
     switch (this) {
       case price:
-        return Icons.money;
+        return AppImages.price;
       case cosyAreas:
-        return Icons.apartment;
+        return AppImages.building;
       case infrastructure:
-        return Icons.settings_applications;
+        return AppImages.infrastructure;
       case withoutLayers:
-        return Icons.square;
+        return AppImages.mapLayer;
     }
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:real_estate_app/src/data/app_images.dart';
 import 'package:real_estate_app/src/styles/app_color.dart';
 import 'package:real_estate_app/src/utils/constants.dart';
 
@@ -55,7 +56,7 @@ class _CustomNavBarState extends State<CustomNavBar>
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             NavigationTabIcon(
-              icon: Icons.maps_ugc,
+              icon: AppImages.mapPin,
               selected: isSelected(0),
               onTap: () {
                 widget.changeTab(0);
@@ -64,7 +65,7 @@ class _CustomNavBarState extends State<CustomNavBar>
               color: getColor(0),
             ),
             NavigationTabIcon(
-              icon: Icons.message_rounded,
+              icon: AppImages.message,
               selected: isSelected(1),
               onTap: () {
                 widget.changeTab(1);
@@ -73,9 +74,8 @@ class _CustomNavBarState extends State<CustomNavBar>
               color: getColor(1),
             ),
             NavigationTabIcon(
-              icon: Icons.home,
+              icon: AppImages.home,
               selected: isSelected(2),
-              size: 28,
               onTap: () {
                 widget.changeTab(2);
                 controller?.forward(from: 0);
@@ -83,7 +83,7 @@ class _CustomNavBarState extends State<CustomNavBar>
               color: getColor(2),
             ),
             NavigationTabIcon(
-              icon: Icons.favorite,
+              icon: AppImages.heart,
               selected: isSelected(3),
               onTap: () {
                 widget.changeTab(3);
@@ -92,7 +92,7 @@ class _CustomNavBarState extends State<CustomNavBar>
               color: getColor(3),
             ),
             NavigationTabIcon(
-              icon: Icons.person,
+              icon: AppImages.person,
               selected: isSelected(4),
               onTap: () {
                 widget.changeTab(4);
@@ -128,7 +128,7 @@ class NavigationTabIcon extends StatelessWidget {
     this.size,
   });
 
-  final IconData icon;
+  final String icon;
   final double? size;
   final Color color;
   final bool selected;
@@ -150,7 +150,12 @@ class NavigationTabIcon extends StatelessWidget {
               width: selected ? 50.r : 40.r,
               decoration: BoxDecoration(shape: BoxShape.circle, color: color),
             ),
-            Icon(icon, color: Colors.white, size: size),
+            Image.asset(
+              icon,
+              color: Colors.white,
+              width: 20.r,
+              height: 20.r,
+            ),
           ],
         ),
       ),
