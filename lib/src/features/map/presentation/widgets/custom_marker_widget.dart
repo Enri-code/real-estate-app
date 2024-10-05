@@ -89,7 +89,7 @@ class _CustomMarkerWidgetState extends State<CustomMarkerWidget> {
     shouldFadeText = false;
     if (isWide) {
       Future.delayed(kDuration500Mil).then((_) {
-        setState(() => shouldFadeText = true);
+        if (mounted) setState(() => shouldFadeText = true);
       });
     }
   }
