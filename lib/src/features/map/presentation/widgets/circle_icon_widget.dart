@@ -17,8 +17,8 @@ class CircleIconWidget extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: ScaleAnimationWidget(
-        delay: 100,
-        duration: 500,
+        delay: 1000,
+        duration: 800,
         child: Container(
           height: 50.r,
           width: 50.r,

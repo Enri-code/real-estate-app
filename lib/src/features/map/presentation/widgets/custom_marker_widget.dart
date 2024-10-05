@@ -18,16 +18,17 @@ class CustomMarkerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScaleAnimationWidget(
-      delay: 1500,
-      duration: 500,
+      delay: 1800,
+      duration: 800,
       alignment: Alignment.bottomLeft,
       child: BlocBuilder<MapBloc, MapState>(
         builder: (context, state) {
           bool isWide = state.mapInfo == MapInformation.cosyAreas;
           return AnimatedContainer(
             duration: kDuration500Mil,
+            curve: Curves.easeOut,
             height: 40.h,
-            width: isWide ? 40.w : 100.w,
+            width: isWide ? 30.w : 100.w,
             padding: EdgeInsets.symmetric(horizontal: 5.r),
             alignment: Alignment.center,
             decoration: BoxDecoration(

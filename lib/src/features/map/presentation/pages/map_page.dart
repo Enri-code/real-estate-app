@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:real_estate_app/src/data/app_images.dart';
+import 'package:real_estate_app/src/styles/map_theme.dart';
 import 'package:real_estate_app/src/utils/enums/map_information.dart';
 import 'package:real_estate_app/src/features/map/data/models/custom_marker.dart';
 import 'package:real_estate_app/src/features/map/presentation/bloc/map_bloc.dart';
@@ -82,7 +83,8 @@ class _MapPageState extends State<MapPage> {
         children: [
           GoogleMap(
             zoomControlsEnabled: false,
-            style: mapTheme,
+            // style: mapTheme,
+            style: MapTheme.dark,
             initialCameraPosition: _kGooglePlex,
             onMapCreated: (controller) {
               _controller.complete(controller);
@@ -134,8 +136,8 @@ class _MapPageState extends State<MapPage> {
             right: 20.w,
             bottom: 100.h,
             child: ScaleAnimationWidget(
-              delay: 1800,
-              duration: 500,
+              delay: 300,
+              duration: 800,
               child: Container(
                 height: 50.r,
                 width: 150.r,
@@ -223,7 +225,7 @@ class _MapPageState extends State<MapPage> {
               offset: const Offset(0, 150),
               padding: EdgeInsets.zero,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.r),
+                borderRadius: BorderRadius.circular(20.r),
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(

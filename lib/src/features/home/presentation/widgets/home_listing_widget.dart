@@ -20,6 +20,9 @@ class HomeListingWidget extends StatelessWidget {
       ),
       child: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
+          if (state.listing.isEmpty) {
+            return const SizedBox.shrink();
+          }
           return StaggeredGrid.count(
             crossAxisCount: 2,
             mainAxisSpacing: 8.r,
