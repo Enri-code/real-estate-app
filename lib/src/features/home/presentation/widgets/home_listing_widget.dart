@@ -11,18 +11,18 @@ class HomeListingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(8.r),
+      padding: EdgeInsets.all(6.r),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(32.r)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24.r)),
       ),
       child: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
           if (state.listing.isEmpty) return const SizedBox();
           return StaggeredGrid.count(
             crossAxisCount: 20,
-            mainAxisSpacing: 8.r,
-            crossAxisSpacing: 8.r,
+            mainAxisSpacing: 6.r,
+            crossAxisSpacing: 6.r,
             children: [
               StaggeredGridTile.count(
                 crossAxisCellCount: 20,

@@ -31,14 +31,14 @@ class _LocationWidgetState extends State<LocationWidget>
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      height: 50.h,
+      height: 48,
       curve: Curves.easeOutQuad,
       duration: kDuration2Sec,
       constraints: BoxConstraints(maxWidth: animateSize ? 0.5.sw : 0),
-      padding: EdgeInsets.symmetric(horizontal: 10.w),
+      padding: EdgeInsets.symmetric(horizontal: 12.w),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(12.r),
+        borderRadius: BorderRadius.circular(10.r),
       ),
       child: AnimatedOpacity(
         opacity: animateOpacity ? 1 : 0,
@@ -50,7 +50,7 @@ class _LocationWidgetState extends State<LocationWidget>
             2.horizontalSpace,
             Icon(
               Icons.location_on_rounded,
-              size: 16.sp,
+              size: 16,
               color: AppColor.grey,
             ),
             3.horizontalSpace,
@@ -58,7 +58,7 @@ class _LocationWidgetState extends State<LocationWidget>
               child: Text(
                 "Saint Petersburg",
                 style: TextStyle(
-                  fontSize: 16.sp,
+                  fontSize: 15,
                   fontWeight: FontWeight.w400,
                   color: AppColor.grey,
                   overflow: TextOverflow.ellipsis,

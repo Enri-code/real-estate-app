@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:real_estate_app/src/data/app_images.dart';
 import 'package:real_estate_app/src/ui/scale_animation_widget.dart';
 
@@ -13,8 +12,8 @@ class UserProfileWidget extends StatelessWidget {
       duration: 800,
       curve: Curves.easeOutCubic,
       child: Container(
-        height: 50.r,
-        width: 50.r,
+        height: 48,
+        width: 48,
         decoration: const BoxDecoration(
           color: Colors.white,
           image: DecorationImage(image: AssetImage(AppImages.profile)),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:real_estate_app/src/data/app_images.dart';
 import 'package:real_estate_app/src/styles/app_color.dart';
 import 'package:real_estate_app/src/utils/constants.dart';
@@ -28,7 +27,7 @@ class _CustomNavBarState extends State<CustomNavBar>
   void initState() {
     controller = AnimationController(
       vsync: this,
-      duration: kDuration150Mil,
+      duration: kDuration300Mil,
     )..forward();
     final colorAnim = TweenSequence([
       TweenSequenceItem(
@@ -108,7 +107,7 @@ class _CustomNavBarState extends State<CustomNavBar>
     if (index == lastIndex) {
       return deselectAnim.value;
     }
-    return AppColor.black;
+    return Colors.black;
   }
 }
 
@@ -134,8 +133,8 @@ class NavigationTabIcon extends StatelessWidget {
       onTap: onTap,
       behavior: HitTestBehavior.opaque,
       child: SizedBox(
-        width: 56.r,
-        height: 56.r,
+        width: 54,
+        height: 54,
         child: Stack(
           alignment: Alignment.center,
           children: [
@@ -144,14 +143,14 @@ class NavigationTabIcon extends StatelessWidget {
               child: AnimatedSize(
                 duration: kDuration500Mil,
                 clipBehavior: Clip.none,
-                child: SizedBox.square(dimension: selected ? 56.r : 44.r),
+                child: SizedBox.square(dimension: selected ? 54 : 38),
               ),
             ),
             Image.asset(
               icon,
               color: Colors.white,
-              width: 20.r,
-              height: 20.r,
+              width: 24,
+              height: 24,
             ),
           ],
         ),

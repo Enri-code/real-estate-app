@@ -31,7 +31,7 @@ class _HomeCountdownWidgetState extends State<HomeCountdownWidget>
     super.initState();
     controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 2200),
+      duration: const Duration(milliseconds: 2200),
     );
 
     numberAnimation = IntTween(
@@ -61,9 +61,7 @@ class _HomeCountdownWidgetState extends State<HomeCountdownWidget>
       delay: 2300,
       duration: 1400,
       curve: Curves.easeInOutCubic,
-      child: Container(
-        width: 170.r,
-        height: 170.r,
+      child: DecoratedBox(
         decoration: widget.decoration,
         child: Column(
           children: [
@@ -71,8 +69,8 @@ class _HomeCountdownWidgetState extends State<HomeCountdownWidget>
             Text(
               widget.title,
               style: TextStyle(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w400,
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
                 color: widget.textColor,
               ),
             ),
@@ -83,18 +81,17 @@ class _HomeCountdownWidgetState extends State<HomeCountdownWidget>
                 return Text(
                   numberAnimation.value.toString(),
                   style: TextStyle(
-                    fontSize: 30.sp,
-                    fontWeight: FontWeight.w600,
+                    fontSize: 40,
+                    fontWeight: FontWeight.w800,
                     color: widget.textColor,
                   ),
                 );
               },
             ),
-            5.verticalSpace,
             Text(
               'offers',
               style: TextStyle(
-                fontSize: 16.sp,
+                fontSize: 17,
                 fontWeight: FontWeight.w400,
                 color: widget.textColor,
               ),

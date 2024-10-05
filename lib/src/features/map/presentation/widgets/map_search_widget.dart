@@ -3,10 +3,27 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:real_estate_app/src/data/app_images.dart';
 import 'package:real_estate_app/src/ui/scale_animation_widget.dart';
 
-class MapSearchWidget extends StatelessWidget {
-  const MapSearchWidget({
-    super.key,
-  });
+class MapSearchWidget extends StatefulWidget {
+  const MapSearchWidget({super.key});
+
+  @override
+  State<MapSearchWidget> createState() => _MapSearchWidgetState();
+}
+
+class _MapSearchWidgetState extends State<MapSearchWidget> {
+  final inputController = TextEditingController();
+
+  @override
+  void initState() {
+    inputController.text = 'Saint Petersburg';
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    inputController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

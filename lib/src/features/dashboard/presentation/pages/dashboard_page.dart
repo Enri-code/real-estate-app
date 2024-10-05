@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:real_estate_app/src/features/dashboard/presentation/widgets/navigation_tab_icon.dart';
@@ -26,15 +28,26 @@ class _DashboardPageState extends State<DashboardPage>
   @override
   void initState() {
     super.initState();
-    dashboardAnimController =
-        AnimationController(duration: kDuration1Sec, vsync: this);
-    animation = Tween<double>(begin: -100.0, end: 16.0).animate(CurvedAnimation(
-      parent: dashboardAnimController!,
-      curve: Curves.easeOutCubic,
-    ));
+    dashboardAnimController = AnimationController(
+      duration: kDuration1Sec,
+      vsync: this,
+    );
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       showNavbar();
     });
+  }
+
+  @override
+  void didChangeDependencies() {
+    animation = Tween<double>(
+      begin: -100.0,
+      end: max(MediaQuery.of(context).viewPadding.bottom, 16.h),
+    ).animate(CurvedAnimation(
+      parent: dashboardAnimController!,
+      curve: Curves.easeOutCubic,
+    ));
+    super.didChangeDependencies();
   }
 
   @override
@@ -74,7 +87,7 @@ class _DashboardPageState extends State<DashboardPage>
         AnimatedBuilder(
           animation: animation,
           child: Container(
-            height: 68.h,
+            height: 64,
             padding: EdgeInsets.symmetric(horizontal: 6.r, vertical: 4.r),
             decoration: BoxDecoration(
               color: AppColor.black,

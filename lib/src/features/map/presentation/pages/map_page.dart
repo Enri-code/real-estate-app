@@ -103,7 +103,7 @@ class _MapPageState extends State<MapPage> {
             right: 32.w,
             top: 50.h,
             child: SizedBox(
-              height: 54.h,
+              height: 48.h,
               child: Row(
                 children: [
                   const Expanded(child: MapSearchWidget()),
@@ -193,15 +193,15 @@ class _MapPageState extends State<MapPage> {
                   children: [
                     Image.asset(
                       menu.icon,
-                      width: 20.r,
-                      height: 20.r,
+                      width: 18,
+                      height: 18,
                       color: selected ? AppColor.primary : AppColor.grey,
                     ),
                     8.horizontalSpace,
                     Text(
                       menu.displayName,
                       style: TextStyle(
-                        fontSize: 15.sp,
+                        fontSize: 16,
                         color: selected ? AppColor.primary : AppColor.grey,
                       ),
                     ),
@@ -210,10 +210,10 @@ class _MapPageState extends State<MapPage> {
               );
             }).toList(),
             dropdownStyleData: DropdownStyleData(
-              width: 140.w,
+              width: 180,
               isOverButton: true,
               offset: const Offset(0, 150),
-              padding: EdgeInsets.zero,
+              padding: const EdgeInsets.symmetric(vertical: 8),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(24.r),
                 color: Colors.white,

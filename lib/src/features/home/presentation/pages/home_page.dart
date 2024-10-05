@@ -95,9 +95,9 @@ class _HomePageState extends State<HomePage>
             decoration: const BoxDecoration(
               gradient: RadialGradient(
                 colors: [Color(0xfffed9b1), AppColor.lightGrey],
-                focal: Alignment(1, 0.3),
-                center: Alignment(0.7, 0.4),
-                radius: 0.9,
+                focal: Alignment(0.8, 0),
+                center: Alignment(0.5, 0.1),
+                radius: 0.8,
               ),
             ),
           ),
@@ -107,36 +107,36 @@ class _HomePageState extends State<HomePage>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  10.verticalSpace,
+                  // 10.verticalSpace,
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [LocationWidget(), UserProfileWidget()],
                   ),
-                  32.verticalSpace,
+                  36.verticalSpace,
                   FadeTransition(
                     opacity: titleAnimationController!,
-                    child: Text(
+                    child: const Text(
                       'Hi, Marina',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 24.sp,
-                        // fontWeight: FontWeight.w500,
+                        fontSize: 23,
+                        fontWeight: FontWeight.w500,
                         color: AppColor.grey,
-                        height: 1.15,
+                        height: 1.1,
                       ),
                     ),
                   ),
-                  8.verticalSpace,
+                  6.verticalSpace,
                   ClipRect(
                     child: SlideTransition(
                       position: textSlideAnimation,
-                      child: Text(
+                      child: const Text(
                         'let\'s select your',
                         textAlign: TextAlign.left,
                         style: TextStyle(
-                          fontSize: 40.sp,
-                          // fontWeight: FontWeight.w500,
-                          height: 1.15,
+                          fontSize: 36,
+                          fontWeight: FontWeight.w500,
+                          height: 1.1,
                         ),
                       ),
                     ),
@@ -144,40 +144,51 @@ class _HomePageState extends State<HomePage>
                   ClipRect(
                     child: SlideTransition(
                       position: textSlideAnimation,
-                      child: Text(
+                      child: const Text(
                         'perfect place',
                         textAlign: TextAlign.left,
                         style: TextStyle(
-                          fontSize: 40.sp,
-                          // fontWeight: FontWeight.w500,
-                          height: 1.15,
+                          fontSize: 36,
+                          fontWeight: FontWeight.w500,
+                          height: 1.1,
                         ),
                       ),
                     ),
                   ),
-                  32.verticalSpace,
+                  44.verticalSpace,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const HomeCountdownWidget(
-                        countDown: 1034,
-                        title: 'BUY',
-                        textColor: Colors.white,
-                        decoration: BoxDecoration(
-                          color: AppColor.primary,
-                          shape: BoxShape.circle,
+                      const Flexible(
+                        child: AspectRatio(
+                          aspectRatio: 1,
+                          child: HomeCountdownWidget(
+                            countDown: 1034,
+                            title: 'BUY',
+                            textColor: Colors.white,
+                            decoration: BoxDecoration(
+                              color: AppColor.primary,
+                              shape: BoxShape.circle,
+                            ),
+                          ),
                         ),
                       ),
-                      HomeCountdownWidget(
-                        countDown: 2212,
-                        title: 'RENT',
-                        decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                            colors: [Colors.white38, Colors.white],
+                      16.horizontalSpace,
+                      Flexible(
+                        child: AspectRatio(
+                          aspectRatio: 1,
+                          child: HomeCountdownWidget(
+                            countDown: 2212,
+                            title: 'RENT',
+                            decoration: BoxDecoration(
+                              gradient: const LinearGradient(
+                                colors: [Colors.white54, Colors.white],
+                              ),
+                              borderRadius: BorderRadius.circular(20.r),
+                            ),
+                            textColor: const Color(0xFFa6957e),
                           ),
-                          borderRadius: BorderRadius.circular(20.r),
                         ),
-                        textColor: const Color(0xFFa6957e),
                       ),
                     ],
                   ),
