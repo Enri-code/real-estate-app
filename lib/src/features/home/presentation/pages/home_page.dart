@@ -57,13 +57,17 @@ class _HomePageState extends State<HomePage>
             curve: Curves.easeInOut,
           ),
           (context) {
+            // This is calculated like this due to the elements of the page
+            // being composed of both proportional and fixed values
+            final minHeight = (500.h - 160) / 1.sh;
             return DraggableScrollableSheet(
               snap: true,
               expand: false,
               shouldCloseOnMinExtent: false,
-              maxChildSize: 0.68,
-              minChildSize: 0.4,
-              initialChildSize: 0.68,
+              maxChildSize: 0.7,
+              minChildSize: minHeight,
+              // minChildSize: 0.44,
+              initialChildSize: 0.7,
               builder: (context, scrollController) {
                 return SingleChildScrollView(
                   controller: scrollController,
@@ -107,36 +111,35 @@ class _HomePageState extends State<HomePage>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // 10.verticalSpace,
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [LocationWidget(), UserProfileWidget()],
                   ),
-                  36.verticalSpace,
+                  32.verticalSpace,
                   FadeTransition(
                     opacity: titleAnimationController!,
                     child: const Text(
                       'Hi, Marina',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 23,
+                        fontSize: 28,
                         fontWeight: FontWeight.w500,
                         color: AppColor.grey,
-                        height: 1.1,
+                        height: 1,
                       ),
                     ),
                   ),
-                  6.verticalSpace,
+                  4.verticalSpace,
                   ClipRect(
                     child: SlideTransition(
                       position: textSlideAnimation,
-                      child: const Text(
+                      child: Text(
                         'let\'s select your',
                         textAlign: TextAlign.left,
                         style: TextStyle(
-                          fontSize: 36,
+                          fontSize: 38.sp,
                           fontWeight: FontWeight.w500,
-                          height: 1.1,
+                          height: .9,
                         ),
                       ),
                     ),
@@ -144,18 +147,18 @@ class _HomePageState extends State<HomePage>
                   ClipRect(
                     child: SlideTransition(
                       position: textSlideAnimation,
-                      child: const Text(
+                      child: Text(
                         'perfect place',
                         textAlign: TextAlign.left,
                         style: TextStyle(
-                          fontSize: 36,
+                          fontSize: 38.sp,
                           fontWeight: FontWeight.w500,
-                          height: 1.1,
+                          height: .9,
                         ),
                       ),
                     ),
                   ),
-                  44.verticalSpace,
+                  48.verticalSpace,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -173,7 +176,7 @@ class _HomePageState extends State<HomePage>
                           ),
                         ),
                       ),
-                      16.horizontalSpace,
+                      8.horizontalSpace,
                       Flexible(
                         child: AspectRatio(
                           aspectRatio: 1,

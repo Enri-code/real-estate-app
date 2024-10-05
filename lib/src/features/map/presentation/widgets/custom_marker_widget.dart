@@ -36,15 +36,15 @@ class _CustomMarkerWidgetState extends State<CustomMarkerWidget> {
       duration: 500,
       alignment: Alignment.bottomLeft,
       child: Container(
-        height: 48.h,
+        height: 44.h,
         alignment: Alignment.center,
-        padding: EdgeInsets.symmetric(horizontal: 16.r),
-        decoration: BoxDecoration(
+        padding: EdgeInsets.symmetric(horizontal: 12.sp),
+        decoration: const BoxDecoration(
           color: AppColor.primary,
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(16.r),
-            topRight: Radius.circular(16.r),
-            bottomRight: Radius.circular(16.r),
+            topLeft: Radius.circular(12),
+            topRight: Radius.circular(12),
+            bottomRight: Radius.circular(12),
           ),
         ),
         child: BlocConsumer<MapBloc, MapState>(
@@ -60,8 +60,8 @@ class _CustomMarkerWidgetState extends State<CustomMarkerWidget> {
               secondChild: Image.asset(
                 AppImages.building,
                 color: Colors.white,
-                width: 15.r,
-                height: 15.r,
+                width: 15,
+                height: 15,
               ),
               firstChild: AnimatedOpacity(
                 duration: kDuration300Mil,
@@ -70,7 +70,10 @@ class _CustomMarkerWidgetState extends State<CustomMarkerWidget> {
                   widget.text,
                   maxLines: 1,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 14.sp, color: Colors.white),
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    color: Colors.white,
+                  ),
                 ),
               ),
               crossFadeState:

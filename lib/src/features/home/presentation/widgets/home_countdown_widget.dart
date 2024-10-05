@@ -92,7 +92,6 @@ class _HomeCountdownWidgetState extends State<HomeCountdownWidget>
               'offers',
               style: TextStyle(
                 fontSize: 17,
-                fontWeight: FontWeight.w400,
                 color: widget.textColor,
               ),
             ),

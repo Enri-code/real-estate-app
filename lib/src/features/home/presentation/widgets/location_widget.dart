@@ -48,18 +48,17 @@ class _LocationWidgetState extends State<LocationWidget>
           mainAxisSize: MainAxisSize.min,
           children: [
             2.horizontalSpace,
-            Icon(
+            const Icon(
               Icons.location_on_rounded,
               size: 16,
               color: AppColor.grey,
             ),
             3.horizontalSpace,
-            Flexible(
+            const Flexible(
               child: Text(
                 "Saint Petersburg",
                 style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w400,
+                  fontSize: 17,
                   color: AppColor.grey,
                   overflow: TextOverflow.ellipsis,
                 ),

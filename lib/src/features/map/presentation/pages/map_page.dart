@@ -132,12 +132,12 @@ class _MapPageState extends State<MapPage> {
               delay: 100,
               duration: 800,
               child: Container(
-                height: 54.r,
+                height: 54,
                 alignment: Alignment.center,
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30.r),
-                  color: Colors.white.withOpacity(0.3),
+                  color: Colors.white.withOpacity(0.25),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -145,13 +145,16 @@ class _MapPageState extends State<MapPage> {
                     Image.asset(
                       AppImages.list,
                       color: Colors.white,
-                      width: 15.r,
-                      height: 15.r,
+                      width: 16,
+                      height: 16,
                     ),
                     6.horizontalSpace,
                     const Text(
                       'List of variants',
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                      ),
                     ),
                   ],
                 ),

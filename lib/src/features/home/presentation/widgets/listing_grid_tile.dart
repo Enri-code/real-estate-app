@@ -70,15 +70,16 @@ class _ListingGridTileState extends State<ListingGridTile>
               Align(
                 alignment: widget.isGridWide
                     ? Alignment.center
-                    : const Alignment(-0.75, 0),
+                    : const Alignment(-0.8, 0),
                 child: AnimatedOpacity(
                   duration: kDuration500Mil,
                   curve: Curves.easeInOutQuad,
                   opacity: showText ? 1 : 0,
                   child: Text(
                     widget.listing.text,
+                    // ignore: prefer_const_constructors
                     style: TextStyle(
-                      fontSize: 15,
+                      fontSize: 18.5,
                       color: AppColor.black,
                       fontWeight: FontWeight.w600,
                     ),

@@ -49,10 +49,11 @@ class _MapSearchWidgetState extends State<MapSearchWidget> {
                 height: 15.r,
               ),
             ),
-            const Expanded(
+            Expanded(
               child: TextField(
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.zero,
+                controller: inputController,
+                decoration: const InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(vertical: 16),
                   border: InputBorder.none,
                   isDense: false,
                 ),
