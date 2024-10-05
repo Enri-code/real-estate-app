@@ -10,7 +10,8 @@ class UserProfileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScaleAnimationWidget(
       delay: 300,
-      duration: 1000,
+      duration: 800,
+      curve: Curves.easeInOut,
       child: Container(
         height: 50.r,
         width: 50.r,

@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage>
           backgroundColor: Colors.transparent,
           sheetAnimationStyle: AnimationStyle(
             duration: kDuration800Mil,
-            curve: Curves.easeOut,
+            curve: Curves.decelerate,
           ),
           (context) {
             return DraggableScrollableSheet(

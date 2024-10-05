@@ -29,7 +29,7 @@ class _DashboardPageState extends State<DashboardPage>
     super.initState();
     dashboardAnimController =
         AnimationController(duration: kDuration1Sec, vsync: this);
-    animation = Tween<double>(begin: -100.0, end: 20.0).animate(CurvedAnimation(
+    animation = Tween<double>(begin: -100.0, end: 16.0).animate(CurvedAnimation(
       parent: dashboardAnimController!,
       curve: Curves.easeOut,
     ));
@@ -47,7 +47,9 @@ class _DashboardPageState extends State<DashboardPage>
   }
 
   void showNavbar() {
-    Future.delayed(kDuration1Sec * 6, () => dashboardAnimController?.forward());
+    Future.delayed(kDuration1Sec * 6, () {
+      return dashboardAnimController?.forward();
+    });
   }
 
   Widget currentPage() {

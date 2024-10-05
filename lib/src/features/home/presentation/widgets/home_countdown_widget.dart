@@ -57,6 +57,7 @@ class _HomeCountdownWidgetState extends State<HomeCountdownWidget>
     return ScaleAnimationWidget(
       delay: 2300,
       duration: 1200,
+      curve: Curves.easeInOutCubic,
       child: Container(
         width: 170.r,
         height: 170.r,

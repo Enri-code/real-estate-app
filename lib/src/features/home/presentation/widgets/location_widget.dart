@@ -20,9 +20,11 @@ class _LocationWidgetState extends State<LocationWidget>
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await Future.delayed(kDuration300Mil);
-      if (mounted) setState(() => animateSize = true);
+      if (!mounted) return;
+      setState(() => animateSize = true);
       await Future.delayed(kDuration1Sec);
-      if (mounted) setState(() => animateOpacity = true);
+      if (!mounted) return;
+      setState(() => animateOpacity = true);
     });
   }
 
