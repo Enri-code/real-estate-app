@@ -23,15 +23,14 @@ class _DashboardPageState extends State<DashboardPage>
 
   int tabIndex = 2;
 
-
   @override
   void initState() {
     super.initState();
     dashboardAnimController =
         AnimationController(duration: kDuration1Sec, vsync: this);
-    animation = Tween<double>(begin: -100.0, end: 20.0).animate(CurvedAnimation(
+    animation = Tween<double>(begin: -100.0, end: 16.0).animate(CurvedAnimation(
       parent: dashboardAnimController!,
-      curve: Curves.easeOut,
+      curve: Curves.easeOutCubic,
     ));
     WidgetsBinding.instance.addPostFrameCallback((_) {
       showNavbar();
@@ -47,23 +46,22 @@ class _DashboardPageState extends State<DashboardPage>
   }
 
   void showNavbar() {
-    Future.delayed(kDuration1Sec * 6, () => dashboardAnimController?.forward());
+    Future.delayed(kDuration1Sec * 6, () {
+      return dashboardAnimController?.forward();
+    });
   }
 
   Widget currentPage() {
     switch (tabIndex) {
       case 0:
         return const MapPage();
-      case 1:
-        return Container(color: Colors.blue);
       case 2:
         return const HomePage();
+      case 1:
       case 3:
-        return Container(color: Colors.green);
       case 4:
-        return Container(color: Colors.purple);
       default:
-        return const SizedBox.shrink();
+        return const Scaffold();
     }
   }
 

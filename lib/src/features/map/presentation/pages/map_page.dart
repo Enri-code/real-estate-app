@@ -101,27 +101,22 @@ class _MapPageState extends State<MapPage> {
             );
           }),
           Positioned(
-            left: 20.w,
-            right: 20.w,
+            left: 32.w,
+            right: 32.w,
             top: 50.h,
             child: SizedBox(
-              height: 45.h,
+              height: 54.h,
               child: Row(
                 children: [
-                  const Expanded(
-                    child: MapSearchWidget(),
-                  ),
+                  const Expanded(child: MapSearchWidget()),
                   10.horizontalSpace,
-                  const AspectRatio(
-                    aspectRatio: 1,
-                    child: MapFilterWidget(),
-                  ),
+                  const AspectRatio(aspectRatio: 1, child: MapFilterWidget()),
                 ],
               ),
             ),
           ),
           Positioned(
-            left: 20.w,
+            left: 32.w,
             bottom: 100.h,
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -133,15 +128,19 @@ class _MapPageState extends State<MapPage> {
             ),
           ),
           Positioned(
-            right: 20.w,
+            right: 32.w,
             bottom: 100.h,
             child: ScaleAnimationWidget(
+<<<<<<< HEAD
               delay: 300,
+=======
+              delay: 100,
+>>>>>>> origin/main
               duration: 800,
               child: Container(
-                height: 50.r,
-                width: 150.r,
+                height: 54.r,
                 alignment: Alignment.center,
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30.r),
                   color: Colors.white.withOpacity(0.3),
@@ -155,18 +154,16 @@ class _MapPageState extends State<MapPage> {
                       width: 15.r,
                       height: 15.r,
                     ),
-                    5.horizontalSpace,
+                    6.horizontalSpace,
                     const Text(
                       'List of variants',
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
+                      style: TextStyle(color: Colors.white),
                     ),
                   ],
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -196,22 +193,21 @@ class _MapPageState extends State<MapPage> {
             },
             items: MapInformation.values.map((menu) {
               bool selected = state.mapInfo == menu;
-
               return DropdownMenuItem<MapInformation>(
                 value: menu,
                 child: Row(
                   children: [
                     Image.asset(
                       menu.icon,
-                      width: 15.r,
-                      height: 15.r,
+                      width: 20.r,
+                      height: 20.r,
                       color: selected ? AppColor.primary : AppColor.grey,
                     ),
-                    5.horizontalSpace,
+                    8.horizontalSpace,
                     Text(
                       menu.displayName,
                       style: TextStyle(
-                        fontSize: 14.sp,
+                        fontSize: 15.sp,
                         color: selected ? AppColor.primary : AppColor.grey,
                       ),
                     ),
@@ -220,12 +216,16 @@ class _MapPageState extends State<MapPage> {
               );
             }).toList(),
             dropdownStyleData: DropdownStyleData(
-              width: 180.w,
+              width: 140.w,
               isOverButton: true,
               offset: const Offset(0, 150),
               padding: EdgeInsets.zero,
               decoration: BoxDecoration(
+<<<<<<< HEAD
                 borderRadius: BorderRadius.circular(20.r),
+=======
+                borderRadius: BorderRadius.circular(24.r),
+>>>>>>> origin/main
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(

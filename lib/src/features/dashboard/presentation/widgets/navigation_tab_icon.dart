@@ -26,8 +26,10 @@ class _CustomNavBarState extends State<CustomNavBar>
 
   @override
   void initState() {
-    controller = AnimationController(vsync: this, duration: kDuration300Mil)
-      ..forward();
+    controller = AnimationController(
+      vsync: this,
+      duration: kDuration150Mil,
+    )..forward();
     final colorAnim = TweenSequence([
       TweenSequenceItem(
         tween: ColorTween(begin: AppColor.primary, end: AppColor.brown),
@@ -130,6 +132,7 @@ class NavigationTabIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
+      behavior: HitTestBehavior.opaque,
       child: SizedBox(
         width: 56.r,
         height: 56.r,

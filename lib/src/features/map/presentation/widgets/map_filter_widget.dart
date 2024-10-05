@@ -5,14 +5,12 @@ import 'package:real_estate_app/src/styles/app_color.dart';
 import 'package:real_estate_app/src/ui/scale_animation_widget.dart';
 
 class MapFilterWidget extends StatelessWidget {
-  const MapFilterWidget({
-    super.key,
-  });
+  const MapFilterWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ScaleAnimationWidget(
-      delay: 1000,
+      delay: 100,
       duration: 800,
       child: Container(
         alignment: Alignment.center,

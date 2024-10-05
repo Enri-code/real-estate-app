@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:real_estate_app/src/data/app_images.dart';
 
 enum MapInformation {
