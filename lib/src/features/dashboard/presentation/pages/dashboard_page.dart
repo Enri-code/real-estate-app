@@ -23,7 +23,6 @@ class _DashboardPageState extends State<DashboardPage>
 
   int tabIndex = 2;
 
-
   @override
   void initState() {
     super.initState();
@@ -56,16 +55,13 @@ class _DashboardPageState extends State<DashboardPage>
     switch (tabIndex) {
       case 0:
         return const MapPage();
-      case 1:
-        return Container(color: Colors.blue);
       case 2:
         return const HomePage();
+      case 1:
       case 3:
-        return Container(color: Colors.green);
       case 4:
-        return Container(color: Colors.purple);
       default:
-        return const SizedBox.shrink();
+        return const Scaffold();
     }
   }
 
