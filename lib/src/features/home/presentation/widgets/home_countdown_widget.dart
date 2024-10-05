@@ -29,12 +29,15 @@ class _HomeCountdownWidgetState extends State<HomeCountdownWidget>
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(vsync: this, duration: kDuration2Sec);
+    controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 2200),
+    );
 
     numberAnimation = IntTween(
       begin: 0,
       end: widget.countDown,
-    ).animate(CurvedAnimation(parent: controller!, curve: Curves.easeOut));
+    ).animate(CurvedAnimation(parent: controller!, curve: Curves.easeOutQuad));
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Future.delayed(kDuration2Sec).then(
@@ -56,7 +59,7 @@ class _HomeCountdownWidgetState extends State<HomeCountdownWidget>
   Widget build(BuildContext context) {
     return ScaleAnimationWidget(
       delay: 2300,
-      duration: 1200,
+      duration: 1400,
       curve: Curves.easeInOutCubic,
       child: Container(
         width: 170.r,

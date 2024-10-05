@@ -12,7 +12,7 @@ class MapSearchWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScaleAnimationWidget(
       delay: 100,
-      duration: 500,
+      duration: 800,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30.r),

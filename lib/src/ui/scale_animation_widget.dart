@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ScaleAnimationWidget extends StatefulWidget {
   const ScaleAnimationWidget({
     super.key,
-    required this.delay,
+    this.delay,
     required this.duration,
     required this.child,
     this.curve = Curves.easeOut,
@@ -11,7 +11,7 @@ class ScaleAnimationWidget extends StatefulWidget {
   });
 
   /// initial delay in milliseconds
-  final int delay;
+  final int? delay;
 
   /// duration of animation in milliseconds
   final int duration;
@@ -45,14 +45,11 @@ class _ScaleAnimationWidgetState extends State<ScaleAnimationWidget>
       CurvedAnimation(parent: controller!, curve: widget.curve),
     );
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.delayed(Duration(milliseconds: widget.delay)).then(
-        (_) {
-          if (controller != null) {
-            controller?.forward();
-          }
-        },
-      );
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (widget.delay != null) {
+        await Future.delayed(Duration(milliseconds: widget.delay!));
+      }
+      if (controller != null) controller?.forward();
     });
   }
 

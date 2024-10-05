@@ -35,7 +35,7 @@ class _ListingGridTileState extends State<ListingGridTile>
       await Future.delayed(Duration(milliseconds: widget.index * 100));
       if (!mounted) return;
       setState(() => scaleLabel = true);
-      await Future.delayed(const Duration(milliseconds: 400));
+      await Future.delayed(kDuration150Mil * 3);
       if (!mounted) return;
       setState(() => expandLabel = true);
       await Future.delayed(kDuration500Mil);
@@ -60,6 +60,7 @@ class _ListingGridTileState extends State<ListingGridTile>
       child: AnimatedScale(
         duration: kDuration500Mil,
         scale: scaleLabel ? 1 : 0,
+        curve: Curves.easeOutBack,
         child: Blur(
           blur: 18,
           colorOpacity: 0.25,
@@ -72,7 +73,7 @@ class _ListingGridTileState extends State<ListingGridTile>
                     : const Alignment(-0.7, 0),
                 child: AnimatedOpacity(
                   duration: kDuration500Mil,
-                  curve: Curves.easeInOut,
+                  curve: Curves.easeInOutQuad,
                   opacity: showText ? 1 : 0,
                   child: Text(
                     widget.listing.text,
@@ -104,7 +105,7 @@ class _ListingGridTileState extends State<ListingGridTile>
           ),
           child: LayoutBuilder(builder: (context, consts) {
             return AnimatedContainer(
-              curve: Curves.easeInOut,
+              curve: Curves.easeInOutCubic,
               duration: kDuration800Mil,
               height: circleWidth + 6.w,
               width: expandLabel ? consts.maxWidth : circleWidth + 6.w,

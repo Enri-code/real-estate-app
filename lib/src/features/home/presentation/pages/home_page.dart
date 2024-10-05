@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage>
     super.initState();
     titleAnimationController = AnimationController(
       vsync: this,
-      duration: kDuration800Mil,
+      duration: kDuration1Sec,
     );
 
     textSlideAnimation = TweenSequence<Offset>([
@@ -42,19 +42,19 @@ class _HomePageState extends State<HomePage>
       ),
     ]).animate(CurvedAnimation(
       parent: titleAnimationController!,
-      curve: Curves.easeOut,
+      curve: Curves.easeOutQuad,
     ));
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.delayed(kDuration1_8Sec).then((_) {
+      Future.delayed(kDuration1_5Sec).then((_) {
         return titleAnimationController?.forward();
       });
-      Future.delayed(const Duration(milliseconds: 4000)).then((_) {
+      Future.delayed(kDuration800Mil * 5).then((_) {
         key.currentState?.showBottomSheet(
           backgroundColor: Colors.transparent,
           sheetAnimationStyle: AnimationStyle(
-            duration: kDuration800Mil,
-            curve: Curves.decelerate,
+            duration: kDuration1Sec,
+            curve: Curves.easeInOut,
           ),
           (context) {
             return DraggableScrollableSheet(

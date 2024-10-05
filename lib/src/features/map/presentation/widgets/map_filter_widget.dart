@@ -10,7 +10,7 @@ class MapFilterWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScaleAnimationWidget(
       delay: 100,
-      duration: 500,
+      duration: 800,
       child: Container(
         alignment: Alignment.center,
         decoration: const BoxDecoration(

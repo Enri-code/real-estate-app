@@ -14,10 +14,10 @@ class CircleIconWidget extends StatelessWidget {
       onTap: onTap,
       child: ScaleAnimationWidget(
         delay: 100,
-        duration: 500,
+        duration: 800,
         child: Container(
-          height: 50.r,
-          width: 50.r,
+          height: 54.r,
+          width: 54.r,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: Colors.white.withOpacity(0.3),

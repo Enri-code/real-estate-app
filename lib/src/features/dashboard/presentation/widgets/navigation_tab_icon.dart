@@ -28,7 +28,7 @@ class _CustomNavBarState extends State<CustomNavBar>
   void initState() {
     controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 200),
+      duration: kDuration150Mil,
     )..forward();
     final colorAnim = TweenSequence([
       TweenSequenceItem(

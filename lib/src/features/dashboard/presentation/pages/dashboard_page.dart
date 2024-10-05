@@ -31,7 +31,7 @@ class _DashboardPageState extends State<DashboardPage>
         AnimationController(duration: kDuration1Sec, vsync: this);
     animation = Tween<double>(begin: -100.0, end: 16.0).animate(CurvedAnimation(
       parent: dashboardAnimController!,
-      curve: Curves.easeOut,
+      curve: Curves.easeOutCubic,
     ));
     WidgetsBinding.instance.addPostFrameCallback((_) {
       showNavbar();

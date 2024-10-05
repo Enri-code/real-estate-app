@@ -22,7 +22,7 @@ class _LocationWidgetState extends State<LocationWidget>
       await Future.delayed(kDuration300Mil);
       if (!mounted) return;
       setState(() => animateSize = true);
-      await Future.delayed(kDuration1Sec);
+      await Future.delayed(kDuration800Mil);
       if (!mounted) return;
       setState(() => animateOpacity = true);
     });
@@ -32,8 +32,8 @@ class _LocationWidgetState extends State<LocationWidget>
   Widget build(BuildContext context) {
     return AnimatedContainer(
       height: 50.h,
-      curve: Curves.easeInOut,
-      duration: kDuration1_8Sec,
+      curve: Curves.easeOutQuad,
+      duration: kDuration2Sec,
       constraints: BoxConstraints(maxWidth: animateSize ? 0.5.sw : 0),
       padding: EdgeInsets.symmetric(horizontal: 10.w),
       decoration: BoxDecoration(
@@ -43,7 +43,7 @@ class _LocationWidgetState extends State<LocationWidget>
       child: AnimatedOpacity(
         opacity: animateOpacity ? 1 : 0,
         duration: kDuration500Mil,
-        curve: Curves.easeInOutSine,
+        curve: Curves.easeInOutCubic,
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
