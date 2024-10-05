@@ -46,33 +46,29 @@ class _MapPageState extends State<MapPage> {
 
   List<CustomMarker> markers = [
     CustomMarker(
-      position: const LatLng(6.538937012067466, 3.373223618378729),
-      name: 'Yaba2 College',
-    ),
-    // CustomMarker(
-    //   position: const LatLng(6.508937012067466, 3.383223618378729),
-    //   name: 'Yaba2 College',
-    // ),
-    CustomMarker(
-      position: const LatLng(6.518937012067466, 3.373223618378729),
-      name: 'Yaba College',
+      position: const LatLng(6.520103824009725, 3.3724523708224297),
+      name: '15.22 mn P',
     ),
     CustomMarker(
-      position: const LatLng(6.522691546522795, 3.369129819908472),
-      name: 'Onoyade Street',
+      position: const LatLng(6.515378337533015, 3.382561951875686),
+      name: '11 mn P',
     ),
     CustomMarker(
-      position: const LatLng(6.521991544648042, 3.375833154153196),
-      name: 'Hussey Road',
+      position: const LatLng(6.522517848870216, 3.3851150795817375),
+      name: '68 mn P',
     ),
     CustomMarker(
-      position: const LatLng(6.518236985614774, 3.378510423737504),
-      name: 'Club Road',
+      position: const LatLng(6.530884401931502, 3.385053388774395),
+      name: '23 mn P',
     ),
-    // CustomMarker(
-    //   position: const LatLng(6.605600625311391, 3.37533474350852),
-    //   name: 'Somolu Road',
-    // ),
+    CustomMarker(
+      position: const LatLng(6.531641205505422, 3.376055583357811),
+      name: '14.5 mn P',
+    ),
+    CustomMarker(
+      position: const LatLng(6.535937176635695, 3.3732349053025246),
+      name: '8.67 mn P',
+    ),
   ];
 
   @override
