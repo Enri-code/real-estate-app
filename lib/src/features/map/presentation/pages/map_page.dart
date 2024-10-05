@@ -131,11 +131,7 @@ class _MapPageState extends State<MapPage> {
             right: 32.w,
             bottom: 100.h,
             child: ScaleAnimationWidget(
-<<<<<<< HEAD
-              delay: 300,
-=======
               delay: 100,
->>>>>>> origin/main
               duration: 800,
               child: Container(
                 height: 54.r,
@@ -204,11 +200,13 @@ class _MapPageState extends State<MapPage> {
                       color: selected ? AppColor.primary : AppColor.grey,
                     ),
                     8.horizontalSpace,
-                    Text(
-                      menu.displayName,
-                      style: TextStyle(
-                        fontSize: 15.sp,
-                        color: selected ? AppColor.primary : AppColor.grey,
+                    Expanded(
+                      child: Text(
+                        menu.displayName,
+                        style: TextStyle(
+                          fontSize: 15.sp,
+                          color: selected ? AppColor.primary : AppColor.grey,
+                        ),
                       ),
                     ),
                   ],
@@ -216,16 +214,12 @@ class _MapPageState extends State<MapPage> {
               );
             }).toList(),
             dropdownStyleData: DropdownStyleData(
-              width: 140.w,
+              width: 180.w,
               isOverButton: true,
               offset: const Offset(0, 150),
               padding: EdgeInsets.zero,
               decoration: BoxDecoration(
-<<<<<<< HEAD
-                borderRadius: BorderRadius.circular(20.r),
-=======
                 borderRadius: BorderRadius.circular(24.r),
->>>>>>> origin/main
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
