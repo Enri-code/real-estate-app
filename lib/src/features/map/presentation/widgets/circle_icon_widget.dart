@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:real_estate_app/src/ui/scale_animation_widget.dart';
+import 'package:real_estate_app/src/core/widgets/scale_animation_widget.dart';
 
 class CircleIconWidget extends StatelessWidget {
   const CircleIconWidget({super.key, required this.icon, this.onTap});

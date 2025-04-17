@@ -2,8 +2,8 @@ import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:real_estate_app/src/features/home/data/models/home_listing.dart';
-import 'package:real_estate_app/src/styles/app_color.dart';
-import 'package:real_estate_app/src/utils/constants.dart';
+import 'package:real_estate_app/src/core/theme/app_color.dart';
+import 'package:real_estate_app/src/core/constants/constants.dart';
 
 class ListingGridTile extends StatefulWidget {
   const ListingGridTile({
@@ -31,8 +31,9 @@ class _ListingGridTileState extends State<ListingGridTile>
   void initState() {
     circleWidth = widget.isGridWide ? 38.w : 32.w;
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await Future.delayed(kDuration300Mil);
-      await Future.delayed(Duration(milliseconds: widget.index * 100));
+      await Future.delayed(
+        kDuration300Mil + Duration(milliseconds: widget.index * 100),
+      );
       if (!mounted) return;
       setState(() => scaleLabel = true);
       await Future.delayed(kDuration150Mil * 3);

@@ -1,4 +1,4 @@
-import 'package:real_estate_app/src/data/app_images.dart';
+import 'package:real_estate_app/src/core/constants/app_images.dart';
 
 enum MapInformation {
   price,

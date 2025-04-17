@@ -5,16 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:real_estate_app/src/data/app_images.dart';
-import 'package:real_estate_app/src/utils/enums/map_information.dart';
+import 'package:real_estate_app/src/core/constants/app_images.dart';
+import 'package:real_estate_app/src/core/utils/enums/map_information.dart';
 import 'package:real_estate_app/src/features/map/data/models/custom_marker.dart';
 import 'package:real_estate_app/src/features/map/presentation/bloc/map_bloc.dart';
 import 'package:real_estate_app/src/features/map/presentation/widgets/circle_icon_widget.dart';
 import 'package:real_estate_app/src/features/map/presentation/widgets/custom_marker_widget.dart';
 import 'package:real_estate_app/src/features/map/presentation/widgets/map_filter_widget.dart';
 import 'package:real_estate_app/src/features/map/presentation/widgets/map_search_widget.dart';
-import 'package:real_estate_app/src/styles/app_color.dart';
-import 'package:real_estate_app/src/ui/scale_animation_widget.dart';
+import 'package:real_estate_app/src/core/theme/app_color.dart';
+import 'package:real_estate_app/src/core/widgets/scale_animation_widget.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});

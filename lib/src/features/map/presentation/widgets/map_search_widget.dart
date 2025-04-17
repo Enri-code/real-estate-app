@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:real_estate_app/src/data/app_images.dart';
-import 'package:real_estate_app/src/ui/scale_animation_widget.dart';
+import 'package:real_estate_app/src/core/constants/app_images.dart';
+import 'package:real_estate_app/src/core/widgets/scale_animation_widget.dart';
 
 class MapSearchWidget extends StatefulWidget {
   const MapSearchWidget({super.key});

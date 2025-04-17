@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:real_estate_app/src/data/app_images.dart';
-import 'package:real_estate_app/src/ui/scale_animation_widget.dart';
+import 'package:real_estate_app/src/core/constants/app_images.dart';
+import 'package:real_estate_app/src/core/widgets/scale_animation_widget.dart';
 
 class MapFilterWidget extends StatelessWidget {
   const MapFilterWidget({super.key});

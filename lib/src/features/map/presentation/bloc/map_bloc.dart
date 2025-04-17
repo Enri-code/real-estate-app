@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:real_estate_app/src/utils/enums/map_information.dart';
+import 'package:real_estate_app/src/core/utils/enums/map_information.dart';
 
 part 'map_event.dart';
 part 'map_state.dart';

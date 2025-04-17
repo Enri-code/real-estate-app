@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:real_estate_app/src/styles/app_color.dart';
-import 'package:real_estate_app/src/utils/constants.dart';
+import 'package:real_estate_app/src/core/theme/app_color.dart';
+import 'package:real_estate_app/src/core/constants/constants.dart';
 
 class LocationWidget extends StatefulWidget {
   const LocationWidget({super.key});

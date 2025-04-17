@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:real_estate_app/src/data/app_images.dart';
-import 'package:real_estate_app/src/utils/enums/map_information.dart';
+import 'package:real_estate_app/src/core/constants/app_images.dart';
+import 'package:real_estate_app/src/core/utils/enums/map_information.dart';
 import 'package:real_estate_app/src/features/map/presentation/bloc/map_bloc.dart';
-import 'package:real_estate_app/src/styles/app_color.dart';
-import 'package:real_estate_app/src/ui/scale_animation_widget.dart';
-import 'package:real_estate_app/src/utils/constants.dart';
+import 'package:real_estate_app/src/core/theme/app_color.dart';
+import 'package:real_estate_app/src/core/widgets/scale_animation_widget.dart';
+import 'package:real_estate_app/src/core/constants/constants.dart';
 
 class CustomMarkerWidget extends StatefulWidget {
   const CustomMarkerWidget({super.key, required this.text});

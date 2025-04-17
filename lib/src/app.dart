@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:real_estate_app/src/features/home/data/repositories/home_repository_impl.dart';
-import 'package:real_estate_app/src/features/dashboard/presentation/bloc/dashboard_bloc.dart';
 import 'package:real_estate_app/src/features/dashboard/presentation/pages/dashboard_page.dart';
 import 'package:real_estate_app/src/features/home/domain/repositories/home_repository.dart';
 import 'package:real_estate_app/src/features/home/presentation/bloc/home_bloc.dart';
@@ -27,11 +26,9 @@ class MyApp extends StatelessWidget {
             child: MultiBlocProvider(
               providers: [
                 BlocProvider(create: (context) => MapBloc()),
-                BlocProvider(create: (context) => DashboardBloc()),
                 BlocProvider(
-                  create: (context) => HomeBloc(
-                    context.read<HomeRepository>(),
-                  )..add(LoadHomeListing()),
+                  create: (context) => HomeBloc(context.read<HomeRepository>())
+                    ..add(LoadHomeListing()),
                 ),
               ],
               child: ScrollConfiguration(

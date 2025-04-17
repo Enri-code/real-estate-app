@@ -5,12 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:real_estate_app/src/features/dashboard/presentation/widgets/navigation_tab_icon.dart';
 import 'package:real_estate_app/src/features/home/presentation/pages/home_page.dart';
 import 'package:real_estate_app/src/features/map/presentation/pages/map_page.dart';
-import 'package:real_estate_app/src/styles/app_color.dart';
-import 'package:real_estate_app/src/utils/constants.dart';
+import 'package:real_estate_app/src/core/theme/app_color.dart';
+import 'package:real_estate_app/src/core/constants/constants.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({
-    super.key,
+    super.key
   });
 
   @override

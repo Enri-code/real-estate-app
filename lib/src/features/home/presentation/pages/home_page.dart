@@ -4,8 +4,8 @@ import 'package:real_estate_app/src/features/home/presentation/widgets/home_coun
 import 'package:real_estate_app/src/features/home/presentation/widgets/home_listing_widget.dart';
 import 'package:real_estate_app/src/features/home/presentation/widgets/location_widget.dart';
 import 'package:real_estate_app/src/features/home/presentation/widgets/user_profile_widget.dart';
-import 'package:real_estate_app/src/styles/app_color.dart';
-import 'package:real_estate_app/src/utils/constants.dart';
+import 'package:real_estate_app/src/core/theme/app_color.dart';
+import 'package:real_estate_app/src/core/constants/constants.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
