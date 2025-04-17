@@ -3,6 +3,9 @@
 This is a sample implementation from the dribbble url
 https://dribbble.com/shots/23780608-Real-Estate-App
 
+## Flutter Version
+
+ - 3.29.3
 
 ## Assets
 
